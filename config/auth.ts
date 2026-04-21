@@ -5,32 +5,31 @@ import type { InferAuthenticators, InferAuthEvents, Authenticators } from '@adon
 
 const authConfig = defineConfig({
   /**
-   * Default guard used when no guard is explicitly specified.
+   * Usamos 'api' por defecto ya que estamos haciendo un backend para tokens.
    */
   default: 'api',
 
   guards: {
     /**
-     * Token-based guard for stateless API authentication.
+     * Guard para la API (Tokens OAT)
      */
     api: tokensGuard({
       provider: tokensUserProvider({
         tokens: 'accessTokens',
-        model: () => import('#models/user'),
+        model: () => import('#models/usuario'),
+        userUniqueIdKey: 'id',
+        uidKey: 'correo_electronico', // Ahora buscará por este campo en el login
       }),
     }),
 
     /**
-     * Session-based guard for browser authentication.
+     * Guard para sesiones (por si usan vistas tradicionales)
      */
     web: sessionGuard({
-      /**
-       * Enable persistent login using remember-me tokens.
-       */
       useRememberMeTokens: false,
-
       provider: sessionUserProvider({
-        model: () => import('#models/user'),
+        model: () => import('#models/usuario'), 
+        uidKey: 'correo_electronico', // Importante para que sesiones también hablen espñol
       }),
     }),
   },
@@ -39,8 +38,7 @@ const authConfig = defineConfig({
 export default authConfig
 
 /**
- * Inferring types from the configured auth
- * guards.
+ * Inferir tipos
  */
 declare module '@adonisjs/auth/types' {
   export interface Authenticators extends InferAuthenticators<typeof authConfig> {}

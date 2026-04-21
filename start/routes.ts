@@ -1,15 +1,19 @@
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel' // Importante para la seguridad
 
 router.group(() => {
   
   // --- SEGURIDAD Y AUTENTICACIÓN ---
-  // Registro de nuevos usuarios
   router.post('registro', '#controllers/autenticacion/registro_controller.handle')
-  // Inicio de sesión
   router.post('login', '#controllers/autenticacion/login_controller.handle')
-  // Recuperación de contraseña
-  router.post('recuperar-password', '#controllers/autenticacion/recuperar_password_controller.solicitar')
-  router.patch('cambiar-password', '#controllers/autenticacion/recuperar_password_controller.cambiar')
+  
+  // Recuperación de contraseña (Pública)
+  router.post('recuperar-password', '#controllers/autenticacion/recuperar_passwords_controller.solicitar')
+  router.patch('restablecer-password', '#controllers/autenticacion/recuperar_passwords_controller.cambiar')
+
+  // Cambio de contraseña (Privada - Usuario logueado)
+  router.patch('cambiar-password-perfil', '#controllers/autenticacion/recuperar_passwords_controller.cambiarConVerificacion')
+    .use(middleware.auth()) // Solo si el token es válido
 
   // --- GESTIÓN DE USUARIOS (Administración) ---
   router.group(() => {
@@ -17,8 +21,10 @@ router.group(() => {
     router.get('/:id', '#controllers/usuarios/gestion_usuarios_controller.verUno')
     router.put('/:id', '#controllers/usuarios/gestion_usuarios_controller.actualizar')
     router.delete('/:id', '#controllers/usuarios/gestion_usuarios_controller.eliminar')
-    router.patch('/:id/estado', '#controllers/usuarios/gestion_usuarios_controller.cambiarEstado') // Activar/Desactivar
-  }).prefix('usuarios')
+    router.patch('/:id/estado', '#controllers/usuarios/gestion_usuarios_controller.cambiarEstado')
+  })
+  .prefix('usuarios')
+  .use(middleware.auth()) // Protegemos todo el CRUD de usuarios
 
   // --- SUPERMERCADOS Y PUNTOS DE RECICLAJE ---
   router.group(() => {
@@ -29,7 +35,7 @@ router.group(() => {
     router.delete('/:id', '#controllers/supermercados/puntos_reciclaje_controller.destroy')
   }).prefix('supermercados')
 
-  // --- MATERIALES (Administración de tipos de residuos) ---
+  // --- MATERIALES ---
   router.group(() => {
     router.get('/', '#controllers/administracion/materiales_controller.index')
     router.post('/', '#controllers/administracion/materiales_controller.store')
@@ -38,12 +44,11 @@ router.group(() => {
   }).prefix('materiales')
 
   // --- ACUMULACIÓN Y CANJE DE PUNTOS ---
-  // Registro de entregas de material
-  router.post('acumular', '#controllers/puntos/acumulacion_puntos_controller.registrar')
-  router.get('historial-acumulacion', '#controllers/puntos/acumulacion_puntos_controller.historial')
-  
-  // Canje por recompensas
-  router.post('canjear', '#controllers/puntos/canje_recompensas_controller.ejecutar')
-  router.get('recompensas-disponibles', '#controllers/puntos/canje_recompensas_controller.listar')
+  router.group(() => {
+    router.post('acumular', '#controllers/puntos/acumulacion_puntos_controller.registrar')
+    router.get('historial-acumulacion', '#controllers/puntos/acumulacion_puntos_controller.historial')
+    router.post('canjear', '#controllers/puntos/canje_recompensas_controller.ejecutar')
+    router.get('recompensas-disponibles', '#controllers/puntos/canje_recompensas_controller.listar')
+  }).use(middleware.auth())
 
 }).prefix('api/v1')
