@@ -5,6 +5,24 @@
 
 export const controllers = {
   AccessTokens: () => import('#controllers/access_tokens_controller'),
+  administracion: {
+    Materiales: () => import('#controllers/administracion/materiales_controller'),
+  },
+  autenticacion: {
+    Login: () => import('#controllers/autenticacion/login_controller'),
+    RecuperarPasswords: () => import('#controllers/autenticacion/recuperar_passwords_controller'),
+    Registros: () => import('#controllers/autenticacion/registros_controller'),
+  },
   NewAccount: () => import('#controllers/new_account_controller'),
   Profile: () => import('#controllers/profile_controller'),
+  puntos: {
+    AcumulacionPuntos: () => import('#controllers/puntos/acumulacion_puntos_controller'),
+    CanjeRecompensas: () => import('#controllers/puntos/canje_recompensas_controller'),
+  },
+  supermercados: {
+    PuntosReciclajes: () => import('#controllers/supermercados/puntos_reciclajes_controller'),
+  },
+  usuarios: {
+    GestionUsuarios: () => import('#controllers/usuarios/gestion_usuarios_controller'),
+  },
 }
