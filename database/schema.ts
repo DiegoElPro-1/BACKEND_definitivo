@@ -7,11 +7,9 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
-export class AuthAccessTokenSchema extends BaseModel {
-  static $columns = ['abilities', 'createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
-  $columns = AuthAccessTokenSchema.$columns
-  @column()
-  declare abilities: string
+export class ApiTokenSchema extends BaseModel {
+  static $columns = ['createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
+  $columns = ApiTokenSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column.dateTime()
@@ -25,26 +23,32 @@ export class AuthAccessTokenSchema extends BaseModel {
   @column()
   declare name: string | null
   @column()
-  declare tokenableId: number
+  declare tokenableId: number | null
   @column()
   declare type: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }
 
-export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
-  $columns = UserSchema.$columns
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+export class UsuarioSchema extends BaseModel {
+  static $columns = ['contrasena', 'correoElectronico', 'estaActivo', 'fechaActualizacion', 'fechaCreacion', 'id', 'nombreCompleto', 'puntosAcumulados', 'rol'] as const
+  $columns = UsuarioSchema.$columns
   @column()
-  declare email: string
+  declare contrasena: string
   @column()
-  declare fullName: string | null
+  declare correoElectronico: string
+  @column()
+  declare estaActivo: boolean | null
+  @column.dateTime()
+  declare fechaActualizacion: DateTime | null
+  @column.dateTime()
+  declare fechaCreacion: DateTime | null
   @column({ isPrimary: true })
   declare id: number
-  @column({ serializeAs: null })
-  declare password: string
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  @column()
+  declare nombreCompleto: string
+  @column()
+  declare puntosAcumulados: number | null
+  @column()
+  declare rol: string | null
 }

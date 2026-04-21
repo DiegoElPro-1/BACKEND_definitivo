@@ -1,53 +1,45 @@
 import type { HttpContext } from '@adonisjs/core/http'
+import Usuario from '#models/usuario'
 
 export default class GestionUsuariosController {
-  /**
-   * Muestra la lista de todos los usuarios
-   */
+  
   public async listar({ response }: HttpContext) {
-    return response.ok({
-      mensaje: 'Lista de usuarios obtenida (Admin)',
-      data: [] 
-    })
+    const usuarios = await Usuario.all()
+    return response.ok(usuarios)
   }
 
-  /**
-   * Muestra el perfil de un solo usuario por ID
-   */
   public async verUno({ params, response }: HttpContext) {
-    return response.ok({
-      mensaje: `Detalles del usuario con ID: ${params.id}`
-    })
+    const usuario = await Usuario.findOrFail(params.id)
+    return response.ok(usuario)
   }
 
-  /**
-   * Actualiza los datos del usuario
-   */
   public async actualizar({ params, request, response }: HttpContext) {
-    const datos = request.all()
-    return response.ok({
-      mensaje: `Usuario ${params.id} actualizado con éxito`,
-      datos_recibidos: datos
-    })
+    const usuario = await Usuario.findOrFail(params.id)
+    const datos = request.only(['nombre_completo', 'rol'])
+    
+    usuario.merge(datos)
+    await usuario.save()
+    
+    return response.ok({ mensaje: 'Usuario actualizado', usuario })
   }
 
-  /**
-   * Elimina un usuario del sistema
-   */
-  public async eliminar({ params, response }: HttpContext) {
-    return response.ok({
-      mensaje: `Usuario ${params.id} ha sido eliminado`
-    })
-  }
-
-  /**
-   * ACTIVA o DESACTIVA a un usuario (Suspensión)
-   * Requerimiento: AP-001
-   */
+  // REQUERIMIENTO ESPECIAL: Activar/Desactivar
   public async cambiarEstado({ params, request, response }: HttpContext) {
-    const { estado } = request.only(['estado']) // true o false
-    return response.ok({
-      mensaje: `El estado del usuario ${params.id} ahora es: ${estado ? 'Activo' : 'Suspendido'}`
+    const usuario = await Usuario.findOrFail(params.id)
+    const { esta_activo } = request.only(['esta_activo'])
+
+    usuario.esta_activo = esta_activo
+    await usuario.save()
+
+    return response.ok({ 
+      mensaje: `Usuario ${usuario.esta_activo ? 'activado' : 'desactivado'} correctamente` 
     })
+  }
+
+  // Borrado físico
+  public async eliminar({ params, response }: HttpContext) {
+    const usuario = await Usuario.findOrFail(params.id)
+    await usuario.delete()
+    return response.ok({ mensaje: 'Usuario eliminado de la base de datos' })
   }
 }
