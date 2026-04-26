@@ -30,25 +30,36 @@ export class ApiTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class PuntoSchema extends BaseModel {
+  static $columns = ['createdAt', 'direccion', 'id', 'nombre', 'updatedAt'] as const
+  $columns = PuntoSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare direccion: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nombre: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UsuarioSchema extends BaseModel {
-  static $columns = ['contrasena', 'correoElectronico', 'estaActivo', 'fechaActualizacion', 'fechaCreacion', 'id', 'nombreCompleto', 'puntosAcumulados', 'rol'] as const
+  static $columns = ['correo', 'createdAt', 'estaActivo', 'id', 'nombreCompleto', 'rol', 'updatedAt'] as const
   $columns = UsuarioSchema.$columns
   @column()
-  declare contrasena: string
-  @column()
-  declare correoElectronico: string
+  declare correo: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
   @column()
   declare estaActivo: boolean | null
-  @column.dateTime()
-  declare fechaActualizacion: DateTime | null
-  @column.dateTime()
-  declare fechaCreacion: DateTime | null
   @column({ isPrimary: true })
   declare id: number
   @column()
   declare nombreCompleto: string
   @column()
-  declare puntosAcumulados: number | null
-  @column()
   declare rol: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
 }

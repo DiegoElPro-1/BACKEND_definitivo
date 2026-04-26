@@ -1,10 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
-import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 
 export default class Usuario extends BaseModel {
-  // Obligamos a que la tabla se llame 'usuarios' en la DB
-  public static table = 'usuarios'
 
   @column({ isPrimary: true })
   declare id: number
@@ -13,26 +10,17 @@ export default class Usuario extends BaseModel {
   declare nombre_completo: string
 
   @column()
-  declare correo_electronico: string
-
-  @column({ serializeAs: null }) 
-  declare password: string
+  declare correo: string
 
   @column()
-  declare rol: 'administrador' | 'supermercado' | 'usuario'
+  declare rol: string
 
   @column()
   declare esta_activo: boolean
 
-  @column()
-  declare puntos_acumulados: number
+  @column.dateTime({ autoCreate: true })
+  declare created_at: DateTime
 
-  @column.dateTime({ autoCreate: true, columnName: 'fecha_creacion' })
-  declare fechaCreacion: DateTime
-
-  @column.dateTime({ autoCreate: true, autoUpdate: true, columnName: 'fecha_actualizacion' })
-  declare fechaActualizacion: DateTime
-
-  // Relación para los tokens de seguridad (OAT)
-  static accessTokens = DbAccessTokensProvider.forModel(Usuario)
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updated_at: DateTime
 }

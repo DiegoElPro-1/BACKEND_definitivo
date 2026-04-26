@@ -1,23 +1,20 @@
 import type { HttpContext } from '@adonisjs/core/http'
+import Punto from '#models/punto'
 
 export default class PuntosReciclajesController {
+
+  // ✅ LISTAR PUNTOS (IMPORTANTE)
   public async index({ response }: HttpContext) {
-    return response.ok({ mensaje: 'Listado de supermercados aliados' })
+    const puntos = await Punto.all()
+    return response.ok(puntos)
   }
 
+  // 🔥 OPCIONAL (para pruebas rápidas)
   public async store({ request, response }: HttpContext) {
-    return response.created({ mensaje: 'Nuevo punto de reciclaje creado' })
-  }
+    const datos = request.only(['nombre', 'direccion'])
 
-  public async show({ params, response }: HttpContext) {
-    return response.ok({ mensaje: `Viendo punto de reciclaje ID: ${params.id}` })
-  }
+    const punto = await Punto.create(datos)
 
-  public async update({ params, response }: HttpContext) {
-    return response.ok({ mensaje: `Punto de reciclaje ${params.id} modificado` })
-  }
-
-  public async destroy({ params, response }: HttpContext) {
-    return response.ok({ mensaje: `Punto de reciclaje ${params.id} eliminado` })
+    return response.created(punto)
   }
 }

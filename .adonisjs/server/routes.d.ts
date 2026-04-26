@@ -4,21 +4,26 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
-    'auth.new_account.store': { paramsTuple?: []; params?: {} }
-    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.listar': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.crear': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.cambiar_estado': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'puntos_reciclajes.index': { paramsTuple?: []; params?: {} }
+    'puntos_reciclajes.store': { paramsTuple?: []; params?: {} }
   }
   GET: {
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.listar': { paramsTuple?: []; params?: {} }
+    'puntos_reciclajes.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.listar': { paramsTuple?: []; params?: {} }
+    'puntos_reciclajes.index': { paramsTuple?: []; params?: {} }
   }
   POST: {
-    'auth.new_account.store': { paramsTuple?: []; params?: {} }
-    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'gestion_usuarios.crear': { paramsTuple?: []; params?: {} }
+    'puntos_reciclajes.store': { paramsTuple?: []; params?: {} }
+  }
+  PATCH: {
+    'gestion_usuarios.cambiar_estado': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {
