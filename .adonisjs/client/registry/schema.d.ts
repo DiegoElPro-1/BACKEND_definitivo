@@ -56,7 +56,7 @@ export interface Registry {
     }
   }
   'login.cerrar_sesion': {
-    methods: ["POST"]
+    methods: ["DELETE"]
     pattern: '/api/auth/cerrar-sesion'
     types: {
       body: {}
@@ -95,12 +95,12 @@ export interface Registry {
     methods: ["PUT"]
     pattern: '/api/admin/usuarios/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/usuario').actualizarUsuarioValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/usuario').actualizarUsuarioValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'usuarios.destroy': {
@@ -143,24 +143,24 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/admin/aliados'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/aliado').crearAliadoValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/aliado').crearAliadoValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'aliados.update': {
     methods: ["PUT"]
     pattern: '/api/admin/aliados/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/aliado').actualizarAliadoValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/aliado').actualizarAliadoValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'aliados.destroy': {
@@ -203,24 +203,24 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/admin/materiales'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/material').crearMaterialValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/material').crearMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'materiales.update': {
     methods: ["PUT"]
     pattern: '/api/admin/materiales/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/material').actualizarMaterialValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/material').actualizarMaterialValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'materiales.destroy': {
@@ -263,24 +263,24 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/admin/recompensas'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/recompensa').crearRecompensaValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/recompensa').crearRecompensaValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'recompensas.update': {
     methods: ["PUT"]
     pattern: '/api/admin/recompensas/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/admin/recompensa').actualizarRecompensaValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/admin/recompensa').actualizarRecompensaValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'recompensas.destroy': {
@@ -321,7 +321,7 @@ export interface Registry {
   }
   'perfil.cambiar_password': {
     methods: ["PUT"]
-    pattern: '/api/usuario/perfil/password'
+    pattern: '/api/usuario/perfil/cambiar-password'
     types: {
       body: {}
       paramsTuple: []

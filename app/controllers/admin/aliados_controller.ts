@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Aliado from '#models/aliado'
+import { crearAliadoValidator, actualizarAliadoValidator } from '#validators/admin/aliado'
 
 export default class AliadosController {
   async index({ response }: HttpContext) {
@@ -17,20 +18,14 @@ export default class AliadosController {
   }
 
   async store({ request, response }: HttpContext) {
-    const datos = request.only([
-      'nombre', 'tipoNegocio', 'descripcion',
-      'direccion', 'telefono', 'correo', 'comision',
-    ])
+    const datos = await request.validateUsing(crearAliadoValidator)
     const aliado = await Aliado.create({ ...datos, idEstadoAliado: 1 })
     return response.created({ mensaje: 'Aliado creado correctamente', aliado })
   }
 
   async update({ params, request, response }: HttpContext) {
     const aliado = await Aliado.findOrFail(params.id)
-    const datos = request.only([
-      'nombre', 'tipoNegocio', 'descripcion',
-      'direccion', 'telefono', 'correo', 'comision', 'idEstadoAliado',
-    ])
+    const datos = await request.validateUsing(actualizarAliadoValidator)
     aliado.merge(datos)
     await aliado.save()
     return response.ok({ mensaje: 'Aliado actualizado correctamente', aliado })

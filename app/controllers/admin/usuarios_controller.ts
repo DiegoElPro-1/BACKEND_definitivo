@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Usuario from '#models/usuario'
+import { actualizarUsuarioValidator } from '#validators/admin/usuario'
 
 export default class UsuariosController {
   async index({ response }: HttpContext) {
@@ -18,7 +19,7 @@ export default class UsuariosController {
 
   async update({ params, request, response }: HttpContext) {
     const usuario = await Usuario.findOrFail(params.id)
-    const datos = request.only(['nombre', 'telefono', 'imagen', 'idRol', 'idEstadoUsuario'])
+    const datos = await request.validateUsing(actualizarUsuarioValidator)
     usuario.merge(datos)
     await usuario.save()
     return response.ok({ mensaje: 'Usuario actualizado correctamente', usuario })

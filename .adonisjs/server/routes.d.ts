@@ -7,13 +7,13 @@ export type ScannedRoutes = {
   }
   POST: {
   }
+  DELETE: {
+  }
   GET: {
   }
   HEAD: {
   }
   PUT: {
-  }
-  DELETE: {
   }
 }
 declare module '@adonisjs/core/types/http' {

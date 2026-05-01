@@ -31,7 +31,7 @@ const routes = {
     types: placeholder as Registry['recuperar_passwords.restablecer_password']['types'],
   },
   'login.cerrar_sesion': {
-    methods: ["POST"],
+    methods: ["DELETE"],
     pattern: '/api/auth/cerrar-sesion',
     tokens: [{"old":"/api/auth/cerrar-sesion","type":0,"val":"api","end":""},{"old":"/api/auth/cerrar-sesion","type":0,"val":"auth","end":""},{"old":"/api/auth/cerrar-sesion","type":0,"val":"cerrar-sesion","end":""}],
     types: placeholder as Registry['login.cerrar_sesion']['types'],
@@ -164,8 +164,8 @@ const routes = {
   },
   'perfil.cambiar_password': {
     methods: ["PUT"],
-    pattern: '/api/usuario/perfil/password',
-    tokens: [{"old":"/api/usuario/perfil/password","type":0,"val":"api","end":""},{"old":"/api/usuario/perfil/password","type":0,"val":"usuario","end":""},{"old":"/api/usuario/perfil/password","type":0,"val":"perfil","end":""},{"old":"/api/usuario/perfil/password","type":0,"val":"password","end":""}],
+    pattern: '/api/usuario/perfil/cambiar-password',
+    tokens: [{"old":"/api/usuario/perfil/cambiar-password","type":0,"val":"api","end":""},{"old":"/api/usuario/perfil/cambiar-password","type":0,"val":"usuario","end":""},{"old":"/api/usuario/perfil/cambiar-password","type":0,"val":"perfil","end":""},{"old":"/api/usuario/perfil/cambiar-password","type":0,"val":"cambiar-password","end":""}],
     types: placeholder as Registry['perfil.cambiar_password']['types'],
   },
   'entregas.index': {

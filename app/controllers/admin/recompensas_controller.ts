@@ -1,5 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Recompensa from '#models/recompensa'
+import { crearRecompensaValidator, actualizarRecompensaValidator } from '#validators/admin/recompensa'
 
 export default class RecompensasController {
   async index({ response }: HttpContext) {
@@ -24,20 +25,14 @@ export default class RecompensasController {
   }
 
   async store({ request, response }: HttpContext) {
-    const datos = request.only([
-      'idTipoRecompensa', 'idAliado', 'nombre', 'descripcion',
-      'puntosRequeridos', 'fechaInicio', 'fechaFin', 'stock',
-    ])
+    const datos = await request.validateUsing(crearRecompensaValidator)
     const recompensa = await Recompensa.create({ ...datos, idEstadoRecompensa: 1 })
     return response.created({ mensaje: 'Recompensa creada correctamente', recompensa })
   }
 
   async update({ params, request, response }: HttpContext) {
     const recompensa = await Recompensa.findOrFail(params.id)
-    const datos = request.only([
-      'idTipoRecompensa', 'idAliado', 'idEstadoRecompensa', 'nombre',
-      'descripcion', 'puntosRequeridos', 'fechaInicio', 'fechaFin', 'stock',
-    ])
+    const datos = await request.validateUsing(actualizarRecompensaValidator)
     recompensa.merge(datos)
     await recompensa.save()
     return response.ok({ mensaje: 'Recompensa actualizada correctamente', recompensa })
