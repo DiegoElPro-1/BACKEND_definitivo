@@ -24,7 +24,7 @@ export default class RegistrosController {
       idEstadoUsuario: 1,   // estado: activo
       nombre: datos.nombre,
       correo: datos.correo,
-      password: await hash.make(datos.password),
+      password: datos.password,
       telefono: datos.telefono ?? null,
       fechaRegistro: DateTime.now(),
     })
