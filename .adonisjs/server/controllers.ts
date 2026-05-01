@@ -4,26 +4,26 @@
  */
 
 export const controllers = {
-  AccessTokens: () => import('#controllers/access_tokens_controller'),
-  administracion: {
-    Materiales: () => import('#controllers/administracion/materiales_controller'),
+  admin: {
+    Aliados: () => import('#controllers/admin/aliados_controller'),
+    Materiales: () => import('#controllers/admin/materiales_controller'),
+    Recompensas: () => import('#controllers/admin/recompensas_controller'),
+    Usuarios: () => import('#controllers/admin/usuarios_controller'),
   },
-  Aliados: () => import('#controllers/aliados_controller'),
-  autenticacion: {
-    Login: () => import('#controllers/autenticacion/login_controller'),
-    RecuperarPasswords: () => import('#controllers/autenticacion/recuperar_passwords_controller'),
-    Registros: () => import('#controllers/autenticacion/registros_controller'),
+  aliado: {
+    Clasificacion: () => import('#controllers/aliado/clasificacion_controller'),
+    EntregasAliado: () => import('#controllers/aliado/entregas_aliado_controller'),
+    PerfilAliado: () => import('#controllers/aliado/perfil_aliado_controller'),
   },
-  NewAccount: () => import('#controllers/new_account_controller'),
-  Profile: () => import('#controllers/profile_controller'),
-  puntos: {
-    AcumulacionPuntos: () => import('#controllers/puntos/acumulacion_puntos_controller'),
-    CanjeRecompensas: () => import('#controllers/puntos/canje_recompensas_controller'),
+  auth: {
+    Login: () => import('#controllers/auth/login_controller'),
+    RecuperarPasswords: () => import('#controllers/auth/recuperar_passwords_controller'),
+    Registros: () => import('#controllers/auth/registros_controller'),
   },
-  supermercados: {
-    PuntosReciclajes: () => import('#controllers/supermercados/puntos_reciclajes_controller'),
-  },
-  usuarios: {
-    GestionUsuarios: () => import('#controllers/usuarios/gestion_usuarios_controller'),
+  usuario: {
+    Canjes: () => import('#controllers/usuario/canjes_controller'),
+    Entregas: () => import('#controllers/usuario/entregas_controller'),
+    Perfil: () => import('#controllers/usuario/perfil_controller'),
+    Puntos: () => import('#controllers/usuario/puntos_controller'),
   },
 }

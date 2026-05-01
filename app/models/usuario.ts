@@ -1,31 +1,65 @@
+import { BaseModel, column, belongsTo, hasMany } from '@adonisjs/lucid/orm'
+import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
+import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
+import { compose } from '@adonisjs/core/helpers'
+import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import Role from './role.js'
+import EstadoUsuario from './estado_usuario.js'
 
-export default class Usuario extends BaseModel {
- @column({ isPrimary: true })
-  declare id: number
+const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
+  uids: ['correo'],
+  passwordColumnName: 'password',
+})
+
+export default class Usuario extends compose(BaseModel, AuthFinder) {
+  public static table = 'usuarios'
+
+  static accessTokens = DbAccessTokensProvider.forModel(Usuario, {
+    expiresIn: '30 days',
+    prefix: 'oat_',
+    table: 'api_tokens',
+    type: 'auth_token',
+    tokenSecretLength: 40,
+  })
+
+  @column({ isPrimary: true })
+  declare idUsuario: number
 
   @column()
-  declare nombre: string  // <--- Esta es la que te falta
+  declare idRol: number
 
   @column()
+  declare idEstadoUsuario: number
+
+  @column()
+  declare nombre: string
+
+  @column({ columnName: 'correo' })
   declare correo: string
 
-  @column()
+  @column({ serializeAs: null })
   declare password: string
 
   @column()
-  declare rol: string
+  declare telefono: string | null
 
   @column()
-  declare telefono: string
+  declare imagen: string | null
 
-  @column()
-  declare esta_activo: boolean
+  @column.dateTime()
+  declare fechaRegistro: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @belongsTo(() => Role, { foreignKey: 'idRol' })
+  declare rol: BelongsTo<typeof Role>
+
+  @belongsTo(() => EstadoUsuario, { foreignKey: 'idEstadoUsuario' })
+  declare estadoUsuario: BelongsTo<typeof EstadoUsuario>
 }

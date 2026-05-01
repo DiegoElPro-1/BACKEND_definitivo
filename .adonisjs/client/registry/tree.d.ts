@@ -2,29 +2,76 @@
 import type { routes } from './index.ts'
 
 export interface ApiDefinition {
+  login: {
+    iniciarSesion: typeof routes['login.iniciar_sesion']
+    cerrarSesion: typeof routes['login.cerrar_sesion']
+  }
+  registros: {
+    registrarse: typeof routes['registros.registrarse']
+  }
+  recuperarPasswords: {
+    solicitarCodigo: typeof routes['recuperar_passwords.solicitar_codigo']
+    restablecerPassword: typeof routes['recuperar_passwords.restablecer_password']
+  }
   usuarios: {
     index: typeof routes['usuarios.index']
-    create: typeof routes['usuarios.create']
-    store: typeof routes['usuarios.store']
     show: typeof routes['usuarios.show']
-    edit: typeof routes['usuarios.edit']
     update: typeof routes['usuarios.update']
     destroy: typeof routes['usuarios.destroy']
   }
-  gestionUsuarios: {
-    cambiarEstado: typeof routes['gestion_usuarios.cambiar_estado']
-  }
   aliados: {
     index: typeof routes['aliados.index']
-    create: typeof routes['aliados.create']
-    store: typeof routes['aliados.store']
     show: typeof routes['aliados.show']
-    edit: typeof routes['aliados.edit']
+    store: typeof routes['aliados.store']
     update: typeof routes['aliados.update']
     destroy: typeof routes['aliados.destroy']
   }
-  puntosReciclajes: {
-    index: typeof routes['puntos_reciclajes.index']
-    store: typeof routes['puntos_reciclajes.store']
+  materiales: {
+    index: typeof routes['materiales.index']
+    show: typeof routes['materiales.show']
+    store: typeof routes['materiales.store']
+    update: typeof routes['materiales.update']
+    destroy: typeof routes['materiales.destroy']
+  }
+  recompensas: {
+    index: typeof routes['recompensas.index']
+    show: typeof routes['recompensas.show']
+    store: typeof routes['recompensas.store']
+    update: typeof routes['recompensas.update']
+    destroy: typeof routes['recompensas.destroy']
+  }
+  perfil: {
+    mostrar: typeof routes['perfil.mostrar']
+    actualizar: typeof routes['perfil.actualizar']
+    cambiarPassword: typeof routes['perfil.cambiar_password']
+  }
+  entregas: {
+    index: typeof routes['entregas.index']
+    show: typeof routes['entregas.show']
+    store: typeof routes['entregas.store']
+  }
+  puntos: {
+    resumen: typeof routes['puntos.resumen']
+    historial: typeof routes['puntos.historial']
+  }
+  canjes: {
+    index: typeof routes['canjes.index']
+    show: typeof routes['canjes.show']
+    store: typeof routes['canjes.store']
+  }
+  perfilAliado: {
+    mostrar: typeof routes['perfil_aliado.mostrar']
+    actualizar: typeof routes['perfil_aliado.actualizar']
+    agregarPunto: typeof routes['perfil_aliado.agregar_punto']
+    actualizarPunto: typeof routes['perfil_aliado.actualizar_punto']
+  }
+  entregasAliado: {
+    index: typeof routes['entregas_aliado.index']
+    show: typeof routes['entregas_aliado.show']
+    actualizarEstado: typeof routes['entregas_aliado.actualizar_estado']
+  }
+  clasificacion: {
+    index: typeof routes['clasificacion.index']
+    store: typeof routes['clasificacion.store']
   }
 }

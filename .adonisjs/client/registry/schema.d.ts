@@ -7,208 +7,532 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
+  'login.iniciar_sesion': {
+    methods: ["POST"]
+    pattern: '/api/auth/iniciar-sesion'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['iniciarSesion']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['iniciarSesion']>>>
+    }
+  }
+  'registros.registrarse': {
+    methods: ["POST"]
+    pattern: '/api/auth/registrarse'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/registros_controller').default['registrarse']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/registros_controller').default['registrarse']>>>
+    }
+  }
+  'recuperar_passwords.solicitar_codigo': {
+    methods: ["POST"]
+    pattern: '/api/auth/recuperar-password/solicitar'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
+    }
+  }
+  'recuperar_passwords.restablecer_password': {
+    methods: ["POST"]
+    pattern: '/api/auth/recuperar-password/restablecer'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
+    }
+  }
+  'login.cerrar_sesion': {
+    methods: ["POST"]
+    pattern: '/api/auth/cerrar-sesion'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['cerrarSesion']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['cerrarSesion']>>>
+    }
+  }
   'usuarios.index': {
     methods: ["GET","HEAD"]
-    pattern: '/api/usuarios'
+    pattern: '/api/admin/usuarios'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['index']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['index']>>>
-    }
-  }
-  'usuarios.create': {
-    methods: ["GET","HEAD"]
-    pattern: '/api/usuarios/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['create']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['create']>>>
-    }
-  }
-  'usuarios.store': {
-    methods: ["POST"]
-    pattern: '/api/usuarios'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['store']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['index']>>>
     }
   }
   'usuarios.show': {
     methods: ["GET","HEAD"]
-    pattern: '/api/usuarios/:id'
+    pattern: '/api/admin/usuarios/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['show']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['show']>>>
-    }
-  }
-  'usuarios.edit': {
-    methods: ["GET","HEAD"]
-    pattern: '/api/usuarios/:id/edit'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['edit']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['edit']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['show']>>>
     }
   }
   'usuarios.update': {
-    methods: ["PUT","PATCH"]
-    pattern: '/api/usuarios/:id'
+    methods: ["PUT"]
+    pattern: '/api/admin/usuarios/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['update']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['update']>>>
     }
   }
   'usuarios.destroy': {
     methods: ["DELETE"]
-    pattern: '/api/usuarios/:id'
+    pattern: '/api/admin/usuarios/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['destroy']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['destroy']>>>
-    }
-  }
-  'gestion_usuarios.cambiar_estado': {
-    methods: ["PATCH"]
-    pattern: '/api/usuarios/:id/estado'
-    types: {
-      body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['cambiarEstado']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuarios/gestion_usuarios_controller').default['cambiarEstado']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/usuarios_controller').default['destroy']>>>
     }
   }
   'aliados.index': {
     methods: ["GET","HEAD"]
-    pattern: '/api/aliados'
+    pattern: '/api/admin/aliados'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['index']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['index']>>>
-    }
-  }
-  'aliados.create': {
-    methods: ["GET","HEAD"]
-    pattern: '/api/aliados/create'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['create']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['create']>>>
-    }
-  }
-  'aliados.store': {
-    methods: ["POST"]
-    pattern: '/api/aliados'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['store']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['index']>>>
     }
   }
   'aliados.show': {
     methods: ["GET","HEAD"]
-    pattern: '/api/aliados/:id'
+    pattern: '/api/admin/aliados/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['show']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['show']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['show']>>>
     }
   }
-  'aliados.edit': {
-    methods: ["GET","HEAD"]
-    pattern: '/api/aliados/:id/edit'
+  'aliados.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/aliados'
     types: {
       body: {}
-      paramsTuple: [ParamValue]
-      params: { id: ParamValue }
+      paramsTuple: []
+      params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['edit']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['edit']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['store']>>>
     }
   }
   'aliados.update': {
-    methods: ["PUT","PATCH"]
-    pattern: '/api/aliados/:id'
+    methods: ["PUT"]
+    pattern: '/api/admin/aliados/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['update']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['update']>>>
     }
   }
   'aliados.destroy': {
     methods: ["DELETE"]
-    pattern: '/api/aliados/:id'
+    pattern: '/api/admin/aliados/:id'
     types: {
       body: {}
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['destroy']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliados_controller').default['destroy']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/aliados_controller').default['destroy']>>>
     }
   }
-  'puntos_reciclajes.index': {
+  'materiales.index': {
     methods: ["GET","HEAD"]
-    pattern: '/api/puntos'
+    pattern: '/api/admin/materiales'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/supermercados/puntos_reciclajes_controller').default['index']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/supermercados/puntos_reciclajes_controller').default['index']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['index']>>>
     }
   }
-  'puntos_reciclajes.store': {
+  'materiales.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['show']>>>
+    }
+  }
+  'materiales.store': {
     methods: ["POST"]
-    pattern: '/api/puntos'
+    pattern: '/api/admin/materiales'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/supermercados/puntos_reciclajes_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/supermercados/puntos_reciclajes_controller').default['store']>>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['store']>>>
+    }
+  }
+  'materiales.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['update']>>>
+    }
+  }
+  'materiales.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/materiales_controller').default['destroy']>>>
+    }
+  }
+  'recompensas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['index']>>>
+    }
+  }
+  'recompensas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['show']>>>
+    }
+  }
+  'recompensas.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['store']>>>
+    }
+  }
+  'recompensas.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['update']>>>
+    }
+  }
+  'recompensas.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['destroy']>>>
+    }
+  }
+  'perfil.mostrar': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/perfil'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['mostrar']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['mostrar']>>>
+    }
+  }
+  'perfil.actualizar': {
+    methods: ["PUT"]
+    pattern: '/api/usuario/perfil'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['actualizar']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['actualizar']>>>
+    }
+  }
+  'perfil.cambiar_password': {
+    methods: ["PUT"]
+    pattern: '/api/usuario/perfil/password'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['cambiarPassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/perfil_controller').default['cambiarPassword']>>>
+    }
+  }
+  'entregas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['index']>>>
+    }
+  }
+  'entregas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['show']>>>
+    }
+  }
+  'entregas.store': {
+    methods: ["POST"]
+    pattern: '/api/usuario/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/entregas_controller').default['store']>>>
+    }
+  }
+  'puntos.resumen': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/puntos'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/puntos_controller').default['resumen']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/puntos_controller').default['resumen']>>>
+    }
+  }
+  'puntos.historial': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/puntos/historial'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/puntos_controller').default['historial']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/puntos_controller').default['historial']>>>
+    }
+  }
+  'canjes.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['index']>>>
+    }
+  }
+  'canjes.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/usuario/canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['show']>>>
+    }
+  }
+  'canjes.store': {
+    methods: ["POST"]
+    pattern: '/api/usuario/canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/usuario/canjes_controller').default['store']>>>
+    }
+  }
+  'perfil_aliado.mostrar': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/aliado/perfil'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['mostrar']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['mostrar']>>>
+    }
+  }
+  'perfil_aliado.actualizar': {
+    methods: ["PUT"]
+    pattern: '/api/aliado/perfil'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['actualizar']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['actualizar']>>>
+    }
+  }
+  'perfil_aliado.agregar_punto': {
+    methods: ["POST"]
+    pattern: '/api/aliado/perfil/puntos'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['agregarPunto']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['agregarPunto']>>>
+    }
+  }
+  'perfil_aliado.actualizar_punto': {
+    methods: ["PUT"]
+    pattern: '/api/aliado/perfil/puntos/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['actualizarPunto']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/perfil_aliado_controller').default['actualizarPunto']>>>
+    }
+  }
+  'entregas_aliado.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/aliado/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['index']>>>
+    }
+  }
+  'entregas_aliado.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/aliado/entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['show']>>>
+    }
+  }
+  'entregas_aliado.actualizar_estado': {
+    methods: ["PUT"]
+    pattern: '/api/aliado/entregas/:id/estado'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['actualizarEstado']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/entregas_aliado_controller').default['actualizarEstado']>>>
+    }
+  }
+  'clasificacion.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/aliado/clasificaciones'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['index']>>>
+    }
+  }
+  'clasificacion.store': {
+    methods: ["POST"]
+    pattern: '/api/aliado/clasificaciones'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
     }
   }
 }

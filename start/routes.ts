@@ -1,39 +1,95 @@
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
 
-// Importaciones dinámicas de los controladores
-const GestionUsuariosController = () => import('#controllers/usuarios/gestion_usuarios_controller')
-const AliadosController = () => import('#controllers/aliados_controller')
-const PuntosReciclajesController = () => import('#controllers/supermercados/puntos_reciclajes_controller')
-
-router.get('/test', async () => {
-  return { mensaje: 'Conexión establecida con el backend de Reciclin-Point' }
-})
-
+// =====================
+// AUTH (público)
+// =====================
 router.group(() => {
-  
-  /* CRUD DE USUARIOS 
-    .resource crea automáticamente:
-    - GET /api/usuarios (index)
-    - POST /api/usuarios (store)
-    - GET /api/usuarios/:id (show)
-    - PUT/PATCH /api/usuarios/:id (update)
-    - DELETE /api/usuarios/:id (destroy)
-  */
-  router.resource('usuarios', GestionUsuariosController)
-  
-  // Ruta adicional para cambio de estado (Punto específico de tu guía)
-  router.patch('/usuarios/:id/estado', [GestionUsuariosController, 'cambiarEstado'])
+  router.post('/iniciar-sesion', [() => import('#controllers/auth/login_controller'), 'iniciarSesion'])
+  router.post('/registrarse', [() => import('#controllers/auth/registros_controller'), 'registrarse'])
+  router.post('/recuperar-password/solicitar', [() => import('#controllers/auth/recuperar_passwords_controller'), 'solicitarCodigo'])
+  router.post('/recuperar-password/restablecer', [() => import('#controllers/auth/recuperar_passwords_controller'), 'restablecerPassword'])
+}).prefix('/api/auth')
 
+// Cerrar sesión (requiere auth)
+router.post('/api/auth/cerrar-sesion', [() => import('#controllers/auth/login_controller'), 'cerrarSesion'])
+  .use(middleware.auth())
 
-  /* CRUD DE ALIADOS 
-    Crea todas las rutas necesarias para la gestión de aliados
-  */
-  router.resource('aliados', AliadosController)
+// =====================
+// ADMIN
+// =====================
+router.group(() => {
+  // Usuarios
+  router.get('/usuarios', [() => import('#controllers/admin/usuarios_controller'), 'index'])
+  router.get('/usuarios/:id', [() => import('#controllers/admin/usuarios_controller'), 'show'])
+  router.put('/usuarios/:id', [() => import('#controllers/admin/usuarios_controller'), 'update'])
+  router.delete('/usuarios/:id', [() => import('#controllers/admin/usuarios_controller'), 'destroy'])
 
+  // Aliados
+  router.get('/aliados', [() => import('#controllers/admin/aliados_controller'), 'index'])
+  router.get('/aliados/:id', [() => import('#controllers/admin/aliados_controller'), 'show'])
+  router.post('/aliados', [() => import('#controllers/admin/aliados_controller'), 'store'])
+  router.put('/aliados/:id', [() => import('#controllers/admin/aliados_controller'), 'update'])
+  router.delete('/aliados/:id', [() => import('#controllers/admin/aliados_controller'), 'destroy'])
 
-  /* PUNTOS DE RECICLAJE
-  */
-  router.get('/puntos', [PuntosReciclajesController, 'index'])
-  router.post('/puntos', [PuntosReciclajesController, 'store'])
+  // Materiales
+  router.get('/materiales', [() => import('#controllers/admin/materiales_controller'), 'index'])
+  router.get('/materiales/:id', [() => import('#controllers/admin/materiales_controller'), 'show'])
+  router.post('/materiales', [() => import('#controllers/admin/materiales_controller'), 'store'])
+  router.put('/materiales/:id', [() => import('#controllers/admin/materiales_controller'), 'update'])
+  router.delete('/materiales/:id', [() => import('#controllers/admin/materiales_controller'), 'destroy'])
 
-}).prefix('/api')
+  // Recompensas
+  router.get('/recompensas', [() => import('#controllers/admin/recompensas_controller'), 'index'])
+  router.get('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'show'])
+  router.post('/recompensas', [() => import('#controllers/admin/recompensas_controller'), 'store'])
+  router.put('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'update'])
+  router.delete('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'destroy'])
+
+}).prefix('/api/admin').use([middleware.auth(), middleware.verificarRol(['admin'])])
+
+// =====================
+// USUARIO
+// =====================
+router.group(() => {
+  // Perfil
+  router.get('/perfil', [() => import('#controllers/usuario/perfil_controller'), 'mostrar'])
+  router.put('/perfil', [() => import('#controllers/usuario/perfil_controller'), 'actualizar'])
+  router.put('/perfil/password', [() => import('#controllers/usuario/perfil_controller'), 'cambiarPassword'])
+
+  // Entregas
+  router.get('/entregas', [() => import('#controllers/usuario/entregas_controller'), 'index'])
+  router.get('/entregas/:id', [() => import('#controllers/usuario/entregas_controller'), 'show'])
+  router.post('/entregas', [() => import('#controllers/usuario/entregas_controller'), 'store'])
+
+  // Puntos
+  router.get('/puntos', [() => import('#controllers/usuario/puntos_controller'), 'resumen'])
+  router.get('/puntos/historial', [() => import('#controllers/usuario/puntos_controller'), 'historial'])
+
+  // Canjes
+  router.get('/canjes', [() => import('#controllers/usuario/canjes_controller'), 'index'])
+  router.get('/canjes/:id', [() => import('#controllers/usuario/canjes_controller'), 'show'])
+  router.post('/canjes', [() => import('#controllers/usuario/canjes_controller'), 'store'])
+
+}).prefix('/api/usuario').use([middleware.auth(), middleware.verificarRol(['usuario'])])
+
+// =====================
+// ALIADO
+// =====================
+router.group(() => {
+  // Perfil del aliado
+  router.get('/perfil', [() => import('#controllers/aliado/perfil_aliado_controller'), 'mostrar'])
+  router.put('/perfil', [() => import('#controllers/aliado/perfil_aliado_controller'), 'actualizar'])
+  router.post('/perfil/puntos', [() => import('#controllers/aliado/perfil_aliado_controller'), 'agregarPunto'])
+  router.put('/perfil/puntos/:id', [() => import('#controllers/aliado/perfil_aliado_controller'), 'actualizarPunto'])
+
+  // Entregas del aliado
+  router.get('/entregas', [() => import('#controllers/aliado/entregas_aliado_controller'), 'index'])
+  router.get('/entregas/:id', [() => import('#controllers/aliado/entregas_aliado_controller'), 'show'])
+  router.put('/entregas/:id/estado', [() => import('#controllers/aliado/entregas_aliado_controller'), 'actualizarEstado'])
+
+  // Clasificación IA
+  router.get('/clasificaciones', [() => import('#controllers/aliado/clasificacion_controller'), 'index'])
+  router.post('/clasificaciones', [() => import('#controllers/aliado/clasificacion_controller'), 'store'])
+
+}).prefix('/api/aliado').use([middleware.auth(), middleware.verificarRol(['aliado'])])

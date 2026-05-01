@@ -1,23 +1,48 @@
+import { BaseModel, column, belongsTo, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+import EstadoAliado from './estado_aliado.js'
+import PuntoReciclaje from './punto_reciclaje.js'
 
 export default class Aliado extends BaseModel {
+  public static table = 'aliados'
+
   @column({ isPrimary: true })
- 
-  declare id: number
+  declare idAliado: number
 
   @column()
-  declare nombreNegocio: string
+  declare idEstadoAliado: number
 
   @column()
-  declare correo: string
+  declare nombre: string
 
   @column()
-  declare password: string
+  declare tipoNegocio: string | null
 
   @column()
-  declare rol: string
+  declare descripcion: string | null
+
+  @column()
+  declare direccion: string | null
+
+  @column()
+  declare telefono: string | null
+
+  @column()
+  declare correo: string | null
+
+  @column()
+  declare comision: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+
+  @belongsTo(() => EstadoAliado, { foreignKey: 'idEstadoAliado' })
+  declare estadoAliado: BelongsTo<typeof EstadoAliado>
+
+  @hasMany(() => PuntoReciclaje, { foreignKey: 'idAliado' })
+  declare puntosReciclaje: HasMany<typeof PuntoReciclaje>
 }
