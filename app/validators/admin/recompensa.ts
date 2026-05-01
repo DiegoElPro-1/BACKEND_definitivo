@@ -4,7 +4,6 @@ export const crearRecompensaValidator = vine.compile(
   vine.object({
     nombre: vine.string().minLength(2).maxLength(100),
     idTipoRecompensa: vine.number().positive(),
-    idEstadoRecompensa: vine.number().positive(),
     idAliado: vine.number().positive().optional(),
     descripcion: vine.string().maxLength(255).optional(),
     puntosRequeridos: vine.number().positive(),

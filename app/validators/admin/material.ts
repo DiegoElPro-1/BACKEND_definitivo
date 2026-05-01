@@ -3,7 +3,6 @@ import vine from '@vinejs/vine'
 export const crearMaterialValidator = vine.compile(
   vine.object({
     nombre: vine.string().minLength(2).maxLength(50),
-    idEstadoMaterial: vine.number().positive(),
     descripcion: vine.string().maxLength(255).optional(),
     tipoResiduo: vine.string().maxLength(50).optional(),
     colorCaneca: vine.string().maxLength(30).optional(),
