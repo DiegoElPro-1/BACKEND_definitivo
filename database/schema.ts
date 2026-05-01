@@ -7,6 +7,25 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AliadoSchema extends BaseModel {
+  static $columns = ['correo', 'createdAt', 'id', 'nombreNegocio', 'password', 'rol', 'updatedAt'] as const
+  $columns = AliadoSchema.$columns
+  @column()
+  declare correo: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nombreNegocio: string
+  @column({ serializeAs: null })
+  declare password: string
+  @column()
+  declare rol: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class ApiTokenSchema extends BaseModel {
   static $columns = ['createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
   $columns = ApiTokenSchema.$columns
@@ -46,7 +65,7 @@ export class PuntoSchema extends BaseModel {
 }
 
 export class UsuarioSchema extends BaseModel {
-  static $columns = ['correo', 'createdAt', 'estaActivo', 'id', 'nombreCompleto', 'rol', 'updatedAt'] as const
+  static $columns = ['correo', 'createdAt', 'estaActivo', 'id', 'nombre', 'password', 'rol', 'telefono', 'updatedAt'] as const
   $columns = UsuarioSchema.$columns
   @column()
   declare correo: string
@@ -57,9 +76,13 @@ export class UsuarioSchema extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare nombreCompleto: string
+  declare nombre: string
+  @column({ serializeAs: null })
+  declare password: string
   @column()
   declare rol: string | null
+  @column()
+  declare telefono: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }

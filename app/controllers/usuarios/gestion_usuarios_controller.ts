@@ -2,45 +2,83 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Usuario from '#models/usuario'
 
 export default class GestionUsuariosController {
-
-  // ✅ LISTAR USUARIOS
-  public async listar({ response }: HttpContext) {
+  
+  // ✅ LISTAR TODO (GET /api/usuarios)
+  public async index({ response }: HttpContext) {
     const usuarios = await Usuario.all()
     return response.ok(usuarios)
   }
 
-  // ✅ CAMBIAR ESTADO (ACTIVAR / DESACTIVAR)
-  public async cambiarEstado({ params, request, response }: HttpContext) {
+  // ✅ CREAR CON VALIDACIÓN DE ROL (POST /api/usuarios)
+  public async store({ request, response }: HttpContext) {
+    const data = request.only(['nombre', 'correo', 'password', 'rol', 'telefono'])
 
-  const id = params.id
+    // 🔴 VALIDACIÓN DE ROL (Punto 4 de tu guía)
+    if (data.rol !== 'usuario') {
+      return response.status(403).json({ 
+        error: 'Validación fallida', 
+        mensaje: 'El rol debe ser "usuario" para registrarse aquí.' 
+      })
+    }
 
-  // 🔴 VALIDACIÓN CLAVE
-  if (!id) {
-    return response.badRequest({ mensaje: 'ID no enviado' })
+    try {
+      const usuario = await Usuario.create(data)
+      return response.created({
+        mensaje: 'Usuario creado y validado correctamente',
+        usuario
+      })
+    } catch (error) {
+      return response.badRequest({ mensaje: 'Error al crear', error: error.message })
+    }
   }
 
-  const usuario = await Usuario.findOrFail(id)
+  // ✅ VER UN USUARIO POR ID (GET /api/usuarios/:id)
+  public async show({ params, response }: HttpContext) {
+    try {
+      const usuario = await Usuario.findOrFail(params.id)
+      return response.ok(usuario)
+    } catch (error) {
+      return response.notFound({ mensaje: 'Usuario no encontrado' })
+    }
+  }
 
-  const { esta_activo } = request.only(['esta_activo'])
+  // ✅ ACTUALIZAR DATOS (PUT /api/usuarios/:id)
+  public async update({ params, request, response }: HttpContext) {
+    const usuario = await Usuario.findOrFail(params.id)
+    const data = request.only(['nombre', 'telefono', 'correo'])
+    
+    usuario.merge(data)
+    await usuario.save()
+    
+    return response.ok({ mensaje: 'Datos actualizados', usuario })
+  }
 
-  usuario.esta_activo = esta_activo
-  await usuario.save()
+  // ✅ ELIMINAR (DELETE /api/usuarios/:id)
+  public async destroy({ params, response }: HttpContext) {
+    const usuario = await Usuario.findOrFail(params.id)
+    await usuario.delete()
+    return response.ok({ mensaje: 'Usuario eliminado correctamente' })
+  }
 
-  return response.ok({
-    mensaje: 'Estado actualizado',
-    usuario
-  })
-}
+  // ✅ CAMBIAR ESTADO (PATCH /api/usuarios/:id/estado)
+  public async cambiarEstado({ params, request, response }: HttpContext) {
+    const id = params.id
+    if (!id) return response.badRequest({ mensaje: 'ID no enviado' })
 
-  // 🔥 OPCIONAL (sirve para pruebas rápidas)
-  public async crear({ request, response }: HttpContext) {
-    const datos = request.only(['nombre_completo', 'correo', 'rol'])
+    try {
+      const usuario = await Usuario.findOrFail(params.id)
+      const { esta_activo } = request.only(['esta_activo'])
 
-    const usuario = await Usuario.create({
-      ...datos,
-      esta_activo: true
-    })
+      // Actualizamos el campo (Asegúrate que exista en tu modelo)
+      usuario.merge({ esta_activo }) 
+      await usuario.save()
 
-    return response.created(usuario)
+      return response.ok({
+        mensaje: 'Estado actualizado correctamente',
+        usuario
+      })
+    } catch (error) {
+      return response.notFound({ mensaje: 'Usuario no encontrado' })
+    }
   }
 }

@@ -8,6 +8,7 @@ export const controllers = {
   administracion: {
     Materiales: () => import('#controllers/administracion/materiales_controller'),
   },
+  Aliados: () => import('#controllers/aliados_controller'),
   autenticacion: {
     Login: () => import('#controllers/autenticacion/login_controller'),
     RecuperarPasswords: () => import('#controllers/autenticacion/recuperar_passwords_controller'),
