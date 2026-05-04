@@ -1,6 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Usuario from '#models/usuario'
-import hash from '@adonisjs/core/services/hash'
 import { DateTime } from 'luxon'
 
 export default class RegistrosController {

@@ -1,6 +1,6 @@
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
-import PuntoRecolaje from './punto_reciclaje.js'
+import PuntoReciclaje from './punto_reciclaje.js'
 
 export default class EstadoPunto extends BaseModel {
   public static table = 'estados_puntos'
