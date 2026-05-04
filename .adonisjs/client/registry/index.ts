@@ -36,6 +36,30 @@ const routes = {
     tokens: [{"old":"/api/auth/cerrar-sesion","type":0,"val":"api","end":""},{"old":"/api/auth/cerrar-sesion","type":0,"val":"auth","end":""},{"old":"/api/auth/cerrar-sesion","type":0,"val":"cerrar-sesion","end":""}],
     types: placeholder as Registry['login.cerrar_sesion']['types'],
   },
+  'administradores.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/admins',
+    tokens: [{"old":"/api/admin/admins","type":0,"val":"api","end":""},{"old":"/api/admin/admins","type":0,"val":"admin","end":""},{"old":"/api/admin/admins","type":0,"val":"admins","end":""}],
+    types: placeholder as Registry['administradores.index']['types'],
+  },
+  'administradores.store': {
+    methods: ["POST"],
+    pattern: '/api/admin/admins',
+    tokens: [{"old":"/api/admin/admins","type":0,"val":"api","end":""},{"old":"/api/admin/admins","type":0,"val":"admin","end":""},{"old":"/api/admin/admins","type":0,"val":"admins","end":""}],
+    types: placeholder as Registry['administradores.store']['types'],
+  },
+  'administradores.update': {
+    methods: ["PUT"],
+    pattern: '/api/admin/admins/:id',
+    tokens: [{"old":"/api/admin/admins/:id","type":0,"val":"api","end":""},{"old":"/api/admin/admins/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/admins/:id","type":0,"val":"admins","end":""},{"old":"/api/admin/admins/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['administradores.update']['types'],
+  },
+  'administradores.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/admin/admins/:id',
+    tokens: [{"old":"/api/admin/admins/:id","type":0,"val":"api","end":""},{"old":"/api/admin/admins/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/admins/:id","type":0,"val":"admins","end":""},{"old":"/api/admin/admins/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['administradores.destroy']['types'],
+  },
   'usuarios.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/admin/usuarios',

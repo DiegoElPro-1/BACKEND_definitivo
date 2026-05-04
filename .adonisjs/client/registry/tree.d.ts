@@ -13,6 +13,12 @@ export interface ApiDefinition {
     solicitarCodigo: typeof routes['recuperar_passwords.solicitar_codigo']
     restablecerPassword: typeof routes['recuperar_passwords.restablecer_password']
   }
+  administradores: {
+    index: typeof routes['administradores.index']
+    store: typeof routes['administradores.store']
+    update: typeof routes['administradores.update']
+    destroy: typeof routes['administradores.destroy']
+  }
   usuarios: {
     index: typeof routes['usuarios.index']
     show: typeof routes['usuarios.show']

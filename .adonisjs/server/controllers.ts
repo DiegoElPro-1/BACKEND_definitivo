@@ -5,6 +5,7 @@
 
 export const controllers = {
   admin: {
+    Administradores: () => import('#controllers/admin/administradores_controller'),
     Aliados: () => import('#controllers/admin/aliados_controller'),
     Materiales: () => import('#controllers/admin/materiales_controller'),
     Recompensas: () => import('#controllers/admin/recompensas_controller'),

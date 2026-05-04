@@ -23,6 +23,12 @@ router.group(() => {
 // =====================
 router.group(() => {
 
+  // Administradores
+  router.get('/admins', [() => import('#controllers/admin/administradores_controller'), 'index'])
+  router.post('/admins', [() => import('#controllers/admin/administradores_controller'), 'store'])
+  router.put('/admins/:id', [() => import('#controllers/admin/administradores_controller'), 'update'])
+  router.delete('/admins/:id', [() => import('#controllers/admin/administradores_controller'), 'destroy'])
+
   // Usuarios
   router.get('/usuarios', [() => import('#controllers/admin/usuarios_controller'), 'index'])
   router.get('/usuarios/:id', [() => import('#controllers/admin/usuarios_controller'), 'show'])
