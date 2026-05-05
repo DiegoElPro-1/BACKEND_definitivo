@@ -1,9 +1,9 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 
-// =====================
+
 // AUTH (públicas)
-// =====================
+
 router.group(() => {
   router.post('/iniciar-sesion', [() => import('#controllers/auth/login_controller'), 'iniciarSesion'])
   router.post('/registrarse', [() => import('#controllers/auth/registros_controller'), 'registrarse'])
@@ -11,16 +11,16 @@ router.group(() => {
   router.post('/recuperar-password/restablecer', [() => import('#controllers/auth/recuperar_passwords_controller'), 'restablecerPassword'])
 }).prefix('/api/auth')
 
-// =====================
+
 // AUTH (protegidas)
-// =====================
+
 router.group(() => {
   router.delete('/cerrar-sesion', [() => import('#controllers/auth/login_controller'), 'cerrarSesion'])
 }).prefix('/api/auth').use(middleware.auth())
 
-// =====================
+
 // ADMIN
-// =====================
+
 router.group(() => {
 
   // Administradores
@@ -58,9 +58,9 @@ router.group(() => {
 
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
-// =====================
+
 // USUARIO
-// =====================
+
 router.group(() => {
 
   // Perfil
@@ -84,9 +84,9 @@ router.group(() => {
 
 }).prefix('/api/usuario').use([middleware.auth(), middleware.verificar_rol(['usuario'])])
 
-// =====================
+
 // ALIADO
-// =====================
+
 router.group(() => {
 
   // Perfil aliado

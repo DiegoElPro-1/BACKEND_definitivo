@@ -48,6 +48,14 @@ export default class Usuario extends compose(BaseModel, AuthFinder) {
   @column()
   declare imagen: string | null
 
+  // ── Recuperación de contraseña ──────────────────────────────────────────────
+  @column({ columnName: 'codigo_recuperacion', serializeAs: null })
+  declare codigoRecuperacion: string | null
+
+  @column.dateTime({ columnName: 'codigo_expiracion', serializeAs: null })
+  declare codigoExpiracion: DateTime | null
+  // ───────────────────────────────────────────────────────────────────────────
+
   @column.dateTime()
   declare fechaRegistro: DateTime
 
