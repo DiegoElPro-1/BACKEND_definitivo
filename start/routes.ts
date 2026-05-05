@@ -105,3 +105,7 @@ router.group(() => {
   router.post('/clasificaciones', [() => import('#controllers/aliado/clasificacion_controller'), 'store'])
 
 }).prefix('/api/aliado').use([middleware.auth(), middleware.verificar_rol(['aliado'])])
+
+// SWAGGER / OPENAPI
+import openapi from '@foadonis/openapi/services/main'
+openapi.registerRoutes('/swagger')

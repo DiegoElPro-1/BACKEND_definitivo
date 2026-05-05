@@ -35,24 +35,24 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/auth/recuperar-password/solicitar'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/recuperar_password').solicitarCodigoValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/recuperar_password').solicitarCodigoValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'recuperar_passwords.restablecer_password': {
     methods: ["POST"]
     pattern: '/api/auth/recuperar-password/restablecer'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/recuperar_password').restablecerPasswordValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/recuperar_password').restablecerPasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'login.cerrar_sesion': {
@@ -581,6 +581,42 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
+    }
+  }
+  'openapi.html': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'openapi.json': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger.json'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'openapi.yaml': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger.yaml'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
     }
   }
 }

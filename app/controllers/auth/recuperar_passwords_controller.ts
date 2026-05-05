@@ -9,11 +9,6 @@ import {
 } from '#validators/auth/recuperar_password'
 
 export default class RecuperarPasswordsController {
-  // ══════════════════════════════════════════════════════════════════════════
-  // PASO 1 — El usuario envía su correo para recibir el código
-  // POST /api/auth/recuperar-password/solicitar
-  // Body: { correo }
-  // ══════════════════════════════════════════════════════════════════════════
   async solicitarCodigo({ request, response }: HttpContext) {
     const { correo } = await request.validateUsing(solicitarCodigoValidator)
 
@@ -44,11 +39,6 @@ export default class RecuperarPasswordsController {
     })
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // PASO 2 — El usuario envía el código para verificarlo antes de cambiar pass
-  // POST /api/auth/recuperar-password/verificar
-  // Body: { correo, codigo }
-  // ══════════════════════════════════════════════════════════════════════════
   async verificarCodigo({ request, response }: HttpContext) {
     const { correo, codigo } = await request.validateUsing(verificarCodigoValidator)
 
@@ -84,11 +74,6 @@ export default class RecuperarPasswordsController {
     })
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
-  // PASO 3 — El usuario envía el código + nueva contraseña para restablecer
-  // POST /api/auth/recuperar-password/restablecer
-  // Body: { correo, codigo, nuevaPassword }
-  // ══════════════════════════════════════════════════════════════════════════
   async restablecerPassword({ request, response }: HttpContext) {
     const { correo, codigo, nuevaPassword } = await request.validateUsing(
       restablecerPasswordValidator
