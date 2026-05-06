@@ -87,4 +87,9 @@ export interface ApiDefinition {
     index: typeof routes['clasificacion.index']
     store: typeof routes['clasificacion.store']
   }
+  openapi: {
+    html: typeof routes['openapi.html']
+    json: typeof routes['openapi.json']
+    yaml: typeof routes['openapi.yaml']
+  }
 }

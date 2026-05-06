@@ -324,6 +324,24 @@ const routes = {
     tokens: [{"old":"/api/aliado/clasificaciones","type":0,"val":"api","end":""},{"old":"/api/aliado/clasificaciones","type":0,"val":"aliado","end":""},{"old":"/api/aliado/clasificaciones","type":0,"val":"clasificaciones","end":""}],
     types: placeholder as Registry['clasificacion.store']['types'],
   },
+  'openapi.html': {
+    methods: ["GET","HEAD"],
+    pattern: '/swagger',
+    tokens: [{"old":"/swagger","type":0,"val":"swagger","end":""}],
+    types: placeholder as Registry['openapi.html']['types'],
+  },
+  'openapi.json': {
+    methods: ["GET","HEAD"],
+    pattern: '/swagger.json',
+    tokens: [{"old":"/swagger.json","type":0,"val":"swagger.json","end":""}],
+    types: placeholder as Registry['openapi.json']['types'],
+  },
+  'openapi.yaml': {
+    methods: ["GET","HEAD"],
+    pattern: '/swagger.yaml',
+    tokens: [{"old":"/swagger.yaml","type":0,"val":"swagger.yaml","end":""}],
+    types: placeholder as Registry['openapi.yaml']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

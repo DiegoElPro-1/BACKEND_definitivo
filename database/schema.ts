@@ -8,8 +8,10 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class AliadoSchema extends BaseModel {
-  static $columns = ['correo', 'createdAt', 'descripcion', 'direccion', 'idAliado', 'idEstadoAliado', 'nombre', 'telefono', 'tipoNegocio', 'updatedAt'] as const
+  static $columns = ['comision', 'correo', 'createdAt', 'descripcion', 'direccion', 'idAliado', 'idEstadoAliado', 'nombre', 'telefono', 'tipoNegocio', 'updatedAt'] as const
   $columns = AliadoSchema.$columns
+  @column()
+  declare comision: string | null
   @column()
   declare correo: string | null
   @column.dateTime({ autoCreate: true })
@@ -357,8 +359,12 @@ export class TiposRecompensaSchema extends BaseModel {
 }
 
 export class UsuarioSchema extends BaseModel {
-  static $columns = ['correo', 'createdAt', 'fechaRegistro', 'idEstadoUsuario', 'idRol', 'idUsuario', 'nombre', 'password', 'telefono', 'updatedAt'] as const
+  static $columns = ['codigoExpiracion', 'codigoRecuperacion', 'correo', 'createdAt', 'fechaRegistro', 'idEstadoUsuario', 'idRol', 'idUsuario', 'nombre', 'password', 'telefono', 'updatedAt'] as const
   $columns = UsuarioSchema.$columns
+  @column.dateTime()
+  declare codigoExpiracion: DateTime | null
+  @column()
+  declare codigoRecuperacion: string | null
   @column()
   declare correo: string
   @column.dateTime({ autoCreate: true })
