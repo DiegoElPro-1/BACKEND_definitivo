@@ -9,6 +9,7 @@ export const controllers = {
     Aliados: () => import('#controllers/admin/aliados_controller'),
     Materiales: () => import('#controllers/admin/materiales_controller'),
     Recompensas: () => import('#controllers/admin/recompensas_controller'),
+    Roles: () => import('#controllers/admin/roles_controller'),
     Usuarios: () => import('#controllers/admin/usuarios_controller'),
   },
   aliado: {

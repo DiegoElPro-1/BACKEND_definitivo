@@ -55,6 +55,13 @@ router.group(() => {
   router.post('/recompensas', [() => import('#controllers/admin/recompensas_controller'), 'store'])
   router.put('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'update'])
   router.delete('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'destroy'])
+  
+  // Roles
+router.get('/roles', [() => import('#controllers/admin/roles_controller'), 'index'])
+router.get('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'show'])
+router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'store'])
+router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
+router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
 
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
