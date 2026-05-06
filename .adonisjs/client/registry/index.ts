@@ -174,6 +174,36 @@ const routes = {
     tokens: [{"old":"/api/admin/recompensas/:id","type":0,"val":"api","end":""},{"old":"/api/admin/recompensas/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/recompensas/:id","type":0,"val":"recompensas","end":""},{"old":"/api/admin/recompensas/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['recompensas.destroy']['types'],
   },
+  'roles.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/roles',
+    tokens: [{"old":"/api/admin/roles","type":0,"val":"api","end":""},{"old":"/api/admin/roles","type":0,"val":"admin","end":""},{"old":"/api/admin/roles","type":0,"val":"roles","end":""}],
+    types: placeholder as Registry['roles.index']['types'],
+  },
+  'roles.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/roles/:id',
+    tokens: [{"old":"/api/admin/roles/:id","type":0,"val":"api","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"roles","end":""},{"old":"/api/admin/roles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.show']['types'],
+  },
+  'roles.store': {
+    methods: ["POST"],
+    pattern: '/api/admin/roles',
+    tokens: [{"old":"/api/admin/roles","type":0,"val":"api","end":""},{"old":"/api/admin/roles","type":0,"val":"admin","end":""},{"old":"/api/admin/roles","type":0,"val":"roles","end":""}],
+    types: placeholder as Registry['roles.store']['types'],
+  },
+  'roles.update': {
+    methods: ["PUT"],
+    pattern: '/api/admin/roles/:id',
+    tokens: [{"old":"/api/admin/roles/:id","type":0,"val":"api","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"roles","end":""},{"old":"/api/admin/roles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.update']['types'],
+  },
+  'roles.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/admin/roles/:id',
+    tokens: [{"old":"/api/admin/roles/:id","type":0,"val":"api","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"roles","end":""},{"old":"/api/admin/roles/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.destroy']['types'],
+  },
   'perfil.mostrar': {
     methods: ["GET","HEAD"],
     pattern: '/api/usuario/perfil',

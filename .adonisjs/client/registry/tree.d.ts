@@ -46,6 +46,13 @@ export interface ApiDefinition {
     update: typeof routes['recompensas.update']
     destroy: typeof routes['recompensas.destroy']
   }
+  roles: {
+    index: typeof routes['roles.index']
+    show: typeof routes['roles.show']
+    store: typeof routes['roles.store']
+    update: typeof routes['roles.update']
+    destroy: typeof routes['roles.destroy']
+  }
   perfil: {
     mostrar: typeof routes['perfil.mostrar']
     actualizar: typeof routes['perfil.actualizar']
