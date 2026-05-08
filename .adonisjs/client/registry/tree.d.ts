@@ -53,6 +53,13 @@ export interface ApiDefinition {
     update: typeof routes['roles.update']
     destroy: typeof routes['roles.destroy']
   }
+  estadosMateriales: {
+    index: typeof routes['estados_materiales.index']
+    show: typeof routes['estados_materiales.show']
+    store: typeof routes['estados_materiales.store']
+    update: typeof routes['estados_materiales.update']
+    destroy: typeof routes['estados_materiales.destroy']
+  }
   perfil: {
     mostrar: typeof routes['perfil.mostrar']
     actualizar: typeof routes['perfil.actualizar']

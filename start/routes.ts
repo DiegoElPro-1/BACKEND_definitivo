@@ -63,6 +63,13 @@ router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'sto
 router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
 router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
 
+// Estados Materiales
+  router.get('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'index'])
+  router.get('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'show'])
+  router.post('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'store'])
+  router.put('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'update'])
+  router.delete('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'destroy'])
+
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
 

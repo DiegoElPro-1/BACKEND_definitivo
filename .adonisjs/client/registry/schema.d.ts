@@ -403,6 +403,66 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['destroy']>>>
     }
   }
+  'estados_materiales.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-materiales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['index']>>>
+    }
+  }
+  'estados_materiales.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['show']>>>
+    }
+  }
+  'estados_materiales.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-materiales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['store']>>>
+    }
+  }
+  'estados_materiales.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['update']>>>
+    }
+  }
+  'estados_materiales.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['destroy']>>>
+    }
+  }
   'perfil.mostrar': {
     methods: ["GET","HEAD"]
     pattern: '/api/usuario/perfil'

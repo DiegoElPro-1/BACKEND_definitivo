@@ -8,10 +8,8 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class AliadoSchema extends BaseModel {
-  static $columns = ['comision', 'correo', 'createdAt', 'descripcion', 'direccion', 'idAliado', 'idEstadoAliado', 'nombre', 'telefono', 'tipoNegocio', 'updatedAt'] as const
+  static $columns = ['correo', 'createdAt', 'descripcion', 'direccion', 'idAliado', 'idEstadoAliado', 'nombre', 'telefono', 'tipoNegocio', 'updatedAt'] as const
   $columns = AliadoSchema.$columns
-  @column()
-  declare comision: string | null
   @column()
   declare correo: string | null
   @column.dateTime({ autoCreate: true })
@@ -171,8 +169,10 @@ export class EstadosEntregasSchema extends BaseModel {
 }
 
 export class EstadosMaterialeSchema extends BaseModel {
-  static $columns = ['idEstadoMaterial', 'nombre'] as const
+  static $columns = ['descripcion', 'idEstadoMaterial', 'nombre'] as const
   $columns = EstadosMaterialeSchema.$columns
+  @column()
+  declare descripcion: string | null
   @column({ isPrimary: true })
   declare idEstadoMaterial: number
   @column()

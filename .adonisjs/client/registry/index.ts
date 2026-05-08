@@ -204,6 +204,36 @@ const routes = {
     tokens: [{"old":"/api/admin/roles/:id","type":0,"val":"api","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/roles/:id","type":0,"val":"roles","end":""},{"old":"/api/admin/roles/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['roles.destroy']['types'],
   },
+  'estados_materiales.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/estados-materiales',
+    tokens: [{"old":"/api/admin/estados-materiales","type":0,"val":"api","end":""},{"old":"/api/admin/estados-materiales","type":0,"val":"admin","end":""},{"old":"/api/admin/estados-materiales","type":0,"val":"estados-materiales","end":""}],
+    types: placeholder as Registry['estados_materiales.index']['types'],
+  },
+  'estados_materiales.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/estados-materiales/:id',
+    tokens: [{"old":"/api/admin/estados-materiales/:id","type":0,"val":"api","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"estados-materiales","end":""},{"old":"/api/admin/estados-materiales/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['estados_materiales.show']['types'],
+  },
+  'estados_materiales.store': {
+    methods: ["POST"],
+    pattern: '/api/admin/estados-materiales',
+    tokens: [{"old":"/api/admin/estados-materiales","type":0,"val":"api","end":""},{"old":"/api/admin/estados-materiales","type":0,"val":"admin","end":""},{"old":"/api/admin/estados-materiales","type":0,"val":"estados-materiales","end":""}],
+    types: placeholder as Registry['estados_materiales.store']['types'],
+  },
+  'estados_materiales.update': {
+    methods: ["PUT"],
+    pattern: '/api/admin/estados-materiales/:id',
+    tokens: [{"old":"/api/admin/estados-materiales/:id","type":0,"val":"api","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"estados-materiales","end":""},{"old":"/api/admin/estados-materiales/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['estados_materiales.update']['types'],
+  },
+  'estados_materiales.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/admin/estados-materiales/:id',
+    tokens: [{"old":"/api/admin/estados-materiales/:id","type":0,"val":"api","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/estados-materiales/:id","type":0,"val":"estados-materiales","end":""},{"old":"/api/admin/estados-materiales/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['estados_materiales.destroy']['types'],
+  },
   'perfil.mostrar': {
     methods: ["GET","HEAD"],
     pattern: '/api/usuario/perfil',
