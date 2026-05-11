@@ -63,6 +63,62 @@ router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'sto
 router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
 router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
 
+// Estados Materiales
+  router.get('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'index'])
+  router.get('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'show'])
+  router.post('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'store'])
+  router.put('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'update'])
+  router.delete('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'destroy'])
+
+
+  // Estados Puntos
+  router.get('/estados-puntos', [() => import('#controllers/admin/estados_puntos_controller'), 'index'])
+  router.get('/estados-puntos/:id', [() => import('#controllers/admin/estados_puntos_controller'), 'show'])
+  router.post('/estados-puntos', [() => import('#controllers/admin/estados_puntos_controller'), 'store'])
+  router.put('/estados-puntos/:id', [() => import('#controllers/admin/estados_puntos_controller'), 'update'])
+  router.delete('/estados-puntos/:id', [() => import('#controllers/admin/estados_puntos_controller'), 'destroy'])
+
+  // Estados Entregas
+  router.get('/estados-entregas', [() => import('#controllers/admin/estados_entregas_controller'), 'index'])
+  router.get('/estados-entregas/:id', [() => import('#controllers/admin/estados_entregas_controller'), 'show'])
+  router.post('/estados-entregas', [() => import('#controllers/admin/estados_entregas_controller'), 'store'])
+  router.put('/estados-entregas/:id', [() => import('#controllers/admin/estados_entregas_controller'), 'update'])
+  router.delete('/estados-entregas/:id', [() => import('#controllers/admin/estados_entregas_controller'), 'destroy'])
+
+  // Estados Aliados
+  router.get('/estados-aliados', [() => import('#controllers/admin/estados_aliados_controller'), 'index'])
+  router.get('/estados-aliados/:id', [() => import('#controllers/admin/estados_aliados_controller'), 'show'])
+  router.post('/estados-aliados', [() => import('#controllers/admin/estados_aliados_controller'), 'store'])
+  router.put('/estados-aliados/:id', [() => import('#controllers/admin/estados_aliados_controller'), 'update'])
+  router.delete('/estados-aliados/:id', [() => import('#controllers/admin/estados_aliados_controller'), 'destroy'])
+
+  // Estados Canjes
+  router.get('/estados-canjes', [() => import('#controllers/admin/estados_canjes_controller'), 'index'])
+  router.get('/estados-canjes/:id', [() => import('#controllers/admin/estados_canjes_controller'), 'show'])
+  router.post('/estados-canjes', [() => import('#controllers/admin/estados_canjes_controller'), 'store'])
+  router.put('/estados-canjes/:id', [() => import('#controllers/admin/estados_canjes_controller'), 'update'])
+  router.delete('/estados-canjes/:id', [() => import('#controllers/admin/estados_canjes_controller'), 'destroy'])
+
+  // Estados Usuarios
+  router.get('/estados-usuarios', [() => import('#controllers/admin/estados_usuarios_controller'), 'index'])
+  router.get('/estados-usuarios/:id', [() => import('#controllers/admin/estados_usuarios_controller'), 'show'])
+  router.post('/estados-usuarios', [() => import('#controllers/admin/estados_usuarios_controller'), 'store'])
+  router.put('/estados-usuarios/:id', [() => import('#controllers/admin/estados_usuarios_controller'), 'update'])
+  router.delete('/estados-usuarios/:id', [() => import('#controllers/admin/estados_usuarios_controller'), 'destroy'])
+
+  // Estados Recompensas
+  router.get('/estados-recompensas', [() => import('#controllers/admin/estados_recompensas_controller'), 'index'])
+  router.get('/estados-recompensas/:id', [() => import('#controllers/admin/estados_recompensas_controller'), 'show'])
+  router.post('/estados-recompensas', [() => import('#controllers/admin/estados_recompensas_controller'), 'store'])
+  router.put('/estados-recompensas/:id', [() => import('#controllers/admin/estados_recompensas_controller'), 'update'])
+  router.delete('/estados-recompensas/:id', [() => import('#controllers/admin/estados_recompensas_controller'), 'destroy'])
+
+ // Tipos Recompensa
+  router.get('/tipos-recompensas', [() => import('#controllers/admin/tipos_recompensas_controller'), 'index'])
+  router.get('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'show'])
+  router.post('/tipos-recompensas', [() => import('#controllers/admin/tipos_recompensas_controller'), 'store'])
+  router.put('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'update'])
+  router.delete('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'destroy'])
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
 

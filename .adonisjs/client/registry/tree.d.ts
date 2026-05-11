@@ -53,6 +53,62 @@ export interface ApiDefinition {
     update: typeof routes['roles.update']
     destroy: typeof routes['roles.destroy']
   }
+  estadosMateriales: {
+    index: typeof routes['estados_materiales.index']
+    show: typeof routes['estados_materiales.show']
+    store: typeof routes['estados_materiales.store']
+    update: typeof routes['estados_materiales.update']
+    destroy: typeof routes['estados_materiales.destroy']
+  }
+  estadosPuntos: {
+    index: typeof routes['estados_puntos.index']
+    show: typeof routes['estados_puntos.show']
+    store: typeof routes['estados_puntos.store']
+    update: typeof routes['estados_puntos.update']
+    destroy: typeof routes['estados_puntos.destroy']
+  }
+  estadosEntregas: {
+    index: typeof routes['estados_entregas.index']
+    show: typeof routes['estados_entregas.show']
+    store: typeof routes['estados_entregas.store']
+    update: typeof routes['estados_entregas.update']
+    destroy: typeof routes['estados_entregas.destroy']
+  }
+  estadosAliados: {
+    index: typeof routes['estados_aliados.index']
+    show: typeof routes['estados_aliados.show']
+    store: typeof routes['estados_aliados.store']
+    update: typeof routes['estados_aliados.update']
+    destroy: typeof routes['estados_aliados.destroy']
+  }
+  estadosCanjes: {
+    index: typeof routes['estados_canjes.index']
+    show: typeof routes['estados_canjes.show']
+    store: typeof routes['estados_canjes.store']
+    update: typeof routes['estados_canjes.update']
+    destroy: typeof routes['estados_canjes.destroy']
+  }
+  estadosUsuarios: {
+    index: typeof routes['estados_usuarios.index']
+    show: typeof routes['estados_usuarios.show']
+    store: typeof routes['estados_usuarios.store']
+    update: typeof routes['estados_usuarios.update']
+    destroy: typeof routes['estados_usuarios.destroy']
+  }
+  estadosRecompensas: {
+    index: typeof routes['estados_recompensas.index']
+    show: typeof routes['estados_recompensas.show']
+    store: typeof routes['estados_recompensas.store']
+    update: typeof routes['estados_recompensas.update']
+    destroy: typeof routes['estados_recompensas.destroy']
+  }
+  tiposRecompensas: {
+    index: typeof routes['tipos_recompensas.index']
+    show: typeof routes['tipos_recompensas.show']
+    store: typeof routes['tipos_recompensas.store']
+    update: typeof routes['tipos_recompensas.update']
+    destroy: typeof routes['tipos_recompensas.destroy']
+  }
   perfil: {
     mostrar: typeof routes['perfil.mostrar']
     actualizar: typeof routes['perfil.actualizar']

@@ -7,9 +7,17 @@ export const controllers = {
   admin: {
     Administradores: () => import('#controllers/admin/administradores_controller'),
     Aliados: () => import('#controllers/admin/aliados_controller'),
+    EstadosAliados: () => import('#controllers/admin/estados_aliados_controller'),
+    EstadosCanjes: () => import('#controllers/admin/estados_canjes_controller'),
+    EstadosEntregas: () => import('#controllers/admin/estados_entregas_controller'),
+    EstadosMateriales: () => import('#controllers/admin/estados_materiales_controller'),
+    EstadosPuntos: () => import('#controllers/admin/estados_puntos_controller'),
+    EstadosRecompensas: () => import('#controllers/admin/estados_recompensas_controller'),
+    EstadosUsuarios: () => import('#controllers/admin/estados_usuarios_controller'),
     Materiales: () => import('#controllers/admin/materiales_controller'),
     Recompensas: () => import('#controllers/admin/recompensas_controller'),
     Roles: () => import('#controllers/admin/roles_controller'),
+    TiposRecompensas: () => import('#controllers/admin/tipos_recompensas_controller'),
     Usuarios: () => import('#controllers/admin/usuarios_controller'),
   },
   aliado: {
