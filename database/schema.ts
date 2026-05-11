@@ -169,8 +169,10 @@ export class EstadosEntregasSchema extends BaseModel {
 }
 
 export class EstadosMaterialeSchema extends BaseModel {
-  static $columns = ['idEstadoMaterial', 'nombre'] as const
+  static $columns = ['descripcion', 'idEstadoMaterial', 'nombre'] as const
   $columns = EstadosMaterialeSchema.$columns
+  @column()
+  declare descripcion: string | null
   @column({ isPrimary: true })
   declare idEstadoMaterial: number
   @column()
@@ -357,8 +359,12 @@ export class TiposRecompensaSchema extends BaseModel {
 }
 
 export class UsuarioSchema extends BaseModel {
-  static $columns = ['correo', 'createdAt', 'fechaRegistro', 'idEstadoUsuario', 'idRol', 'idUsuario', 'nombre', 'password', 'telefono', 'updatedAt'] as const
+  static $columns = ['codigoExpiracion', 'codigoRecuperacion', 'correo', 'createdAt', 'fechaRegistro', 'idEstadoUsuario', 'idRol', 'idUsuario', 'nombre', 'password', 'telefono', 'updatedAt'] as const
   $columns = UsuarioSchema.$columns
+  @column.dateTime()
+  declare codigoExpiracion: DateTime | null
+  @column()
+  declare codigoRecuperacion: string | null
   @column()
   declare correo: string
   @column.dateTime({ autoCreate: true })

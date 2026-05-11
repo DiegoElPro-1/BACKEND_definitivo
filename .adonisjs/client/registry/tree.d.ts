@@ -13,6 +13,12 @@ export interface ApiDefinition {
     solicitarCodigo: typeof routes['recuperar_passwords.solicitar_codigo']
     restablecerPassword: typeof routes['recuperar_passwords.restablecer_password']
   }
+  administradores: {
+    index: typeof routes['administradores.index']
+    store: typeof routes['administradores.store']
+    update: typeof routes['administradores.update']
+    destroy: typeof routes['administradores.destroy']
+  }
   usuarios: {
     index: typeof routes['usuarios.index']
     show: typeof routes['usuarios.show']
@@ -39,6 +45,69 @@ export interface ApiDefinition {
     store: typeof routes['recompensas.store']
     update: typeof routes['recompensas.update']
     destroy: typeof routes['recompensas.destroy']
+  }
+  roles: {
+    index: typeof routes['roles.index']
+    show: typeof routes['roles.show']
+    store: typeof routes['roles.store']
+    update: typeof routes['roles.update']
+    destroy: typeof routes['roles.destroy']
+  }
+  estadosMateriales: {
+    index: typeof routes['estados_materiales.index']
+    show: typeof routes['estados_materiales.show']
+    store: typeof routes['estados_materiales.store']
+    update: typeof routes['estados_materiales.update']
+    destroy: typeof routes['estados_materiales.destroy']
+  }
+  estadosPuntos: {
+    index: typeof routes['estados_puntos.index']
+    show: typeof routes['estados_puntos.show']
+    store: typeof routes['estados_puntos.store']
+    update: typeof routes['estados_puntos.update']
+    destroy: typeof routes['estados_puntos.destroy']
+  }
+  estadosEntregas: {
+    index: typeof routes['estados_entregas.index']
+    show: typeof routes['estados_entregas.show']
+    store: typeof routes['estados_entregas.store']
+    update: typeof routes['estados_entregas.update']
+    destroy: typeof routes['estados_entregas.destroy']
+  }
+  estadosAliados: {
+    index: typeof routes['estados_aliados.index']
+    show: typeof routes['estados_aliados.show']
+    store: typeof routes['estados_aliados.store']
+    update: typeof routes['estados_aliados.update']
+    destroy: typeof routes['estados_aliados.destroy']
+  }
+  estadosCanjes: {
+    index: typeof routes['estados_canjes.index']
+    show: typeof routes['estados_canjes.show']
+    store: typeof routes['estados_canjes.store']
+    update: typeof routes['estados_canjes.update']
+    destroy: typeof routes['estados_canjes.destroy']
+  }
+  estadosUsuarios: {
+    index: typeof routes['estados_usuarios.index']
+    show: typeof routes['estados_usuarios.show']
+    store: typeof routes['estados_usuarios.store']
+    update: typeof routes['estados_usuarios.update']
+    destroy: typeof routes['estados_usuarios.destroy']
+  }
+  estadosRecompensas: {
+    index: typeof routes['estados_recompensas.index']
+    show: typeof routes['estados_recompensas.show']
+    store: typeof routes['estados_recompensas.store']
+    update: typeof routes['estados_recompensas.update']
+    destroy: typeof routes['estados_recompensas.destroy']
+  }
+  tiposRecompensas: {
+    index: typeof routes['tipos_recompensas.index']
+    show: typeof routes['tipos_recompensas.show']
+    store: typeof routes['tipos_recompensas.store']
+    update: typeof routes['tipos_recompensas.update']
+    destroy: typeof routes['tipos_recompensas.destroy']
   }
   perfil: {
     mostrar: typeof routes['perfil.mostrar']
@@ -73,5 +142,10 @@ export interface ApiDefinition {
   clasificacion: {
     index: typeof routes['clasificacion.index']
     store: typeof routes['clasificacion.store']
+  }
+  openapi: {
+    html: typeof routes['openapi.html']
+    json: typeof routes['openapi.json']
+    yaml: typeof routes['openapi.yaml']
   }
 }

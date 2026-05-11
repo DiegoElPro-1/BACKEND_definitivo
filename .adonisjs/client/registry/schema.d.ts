@@ -35,24 +35,24 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/auth/recuperar-password/solicitar'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/recuperar_password').solicitarCodigoValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/recuperar_password').solicitarCodigoValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['solicitarCodigo']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'recuperar_passwords.restablecer_password': {
     methods: ["POST"]
     pattern: '/api/auth/recuperar-password/restablecer'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/recuperar_password').restablecerPasswordValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/recuperar_password').restablecerPasswordValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/recuperar_passwords_controller').default['restablecerPassword']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'login.cerrar_sesion': {
@@ -65,6 +65,54 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['cerrarSesion']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/login_controller').default['cerrarSesion']>>>
+    }
+  }
+  'administradores.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/admins'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['index']>>>
+    }
+  }
+  'administradores.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/admins'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['store']>>>
+    }
+  }
+  'administradores.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/admins/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['update']>>>
+    }
+  }
+  'administradores.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/admins/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/administradores_controller').default['destroy']>>>
     }
   }
   'usuarios.index': {
@@ -293,6 +341,546 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['destroy']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/recompensas_controller').default['destroy']>>>
+    }
+  }
+  'roles.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/roles'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['index']>>>
+    }
+  }
+  'roles.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/roles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['show']>>>
+    }
+  }
+  'roles.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/roles'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['store']>>>
+    }
+  }
+  'roles.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/roles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['update']>>>
+    }
+  }
+  'roles.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/roles/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['destroy']>>>
+    }
+  }
+  'estados_materiales.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-materiales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['index']>>>
+    }
+  }
+  'estados_materiales.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['show']>>>
+    }
+  }
+  'estados_materiales.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-materiales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['store']>>>
+    }
+  }
+  'estados_materiales.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['update']>>>
+    }
+  }
+  'estados_materiales.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-materiales/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_materiales_controller').default['destroy']>>>
+    }
+  }
+  'estados_puntos.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-puntos'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['index']>>>
+    }
+  }
+  'estados_puntos.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-puntos/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['show']>>>
+    }
+  }
+  'estados_puntos.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-puntos'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['store']>>>
+    }
+  }
+  'estados_puntos.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-puntos/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['update']>>>
+    }
+  }
+  'estados_puntos.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-puntos/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_puntos_controller').default['destroy']>>>
+    }
+  }
+  'estados_entregas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['index']>>>
+    }
+  }
+  'estados_entregas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['show']>>>
+    }
+  }
+  'estados_entregas.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['store']>>>
+    }
+  }
+  'estados_entregas.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['update']>>>
+    }
+  }
+  'estados_entregas.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_entregas_controller').default['destroy']>>>
+    }
+  }
+  'estados_aliados.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-aliados'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['index']>>>
+    }
+  }
+  'estados_aliados.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-aliados/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['show']>>>
+    }
+  }
+  'estados_aliados.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-aliados'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['store']>>>
+    }
+  }
+  'estados_aliados.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-aliados/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['update']>>>
+    }
+  }
+  'estados_aliados.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-aliados/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_aliados_controller').default['destroy']>>>
+    }
+  }
+  'estados_canjes.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['index']>>>
+    }
+  }
+  'estados_canjes.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['show']>>>
+    }
+  }
+  'estados_canjes.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['store']>>>
+    }
+  }
+  'estados_canjes.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['update']>>>
+    }
+  }
+  'estados_canjes.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_canjes_controller').default['destroy']>>>
+    }
+  }
+  'estados_usuarios.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-usuarios'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['index']>>>
+    }
+  }
+  'estados_usuarios.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-usuarios/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['show']>>>
+    }
+  }
+  'estados_usuarios.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-usuarios'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['store']>>>
+    }
+  }
+  'estados_usuarios.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-usuarios/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['update']>>>
+    }
+  }
+  'estados_usuarios.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-usuarios/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_usuarios_controller').default['destroy']>>>
+    }
+  }
+  'estados_recompensas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['index']>>>
+    }
+  }
+  'estados_recompensas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/estados-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['show']>>>
+    }
+  }
+  'estados_recompensas.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/estados-recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['store']>>>
+    }
+  }
+  'estados_recompensas.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/estados-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['update']>>>
+    }
+  }
+  'estados_recompensas.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/estados-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/estados_recompensas_controller').default['destroy']>>>
+    }
+  }
+  'tipos_recompensas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/tipos-recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['index']>>>
+    }
+  }
+  'tipos_recompensas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/tipos-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['show']>>>
+    }
+  }
+  'tipos_recompensas.store': {
+    methods: ["POST"]
+    pattern: '/api/admin/tipos-recompensas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['store']>>>
+    }
+  }
+  'tipos_recompensas.update': {
+    methods: ["PUT"]
+    pattern: '/api/admin/tipos-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['update']>>>
+    }
+  }
+  'tipos_recompensas.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/admin/tipos-recompensas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['destroy']>>>
     }
   }
   'perfil.mostrar': {
@@ -533,6 +1121,42 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
+    }
+  }
+  'openapi.html': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'openapi.json': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger.json'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'openapi.yaml': {
+    methods: ["GET","HEAD"]
+    pattern: '/swagger.yaml'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
     }
   }
 }

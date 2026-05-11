@@ -1,6 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import MovimientoPunto from '#models/movimiento_punto'
-import Entrega from '#models/entrega'
 
 export default class PuntosController {
   async resumen({ auth, response }: HttpContext) {
