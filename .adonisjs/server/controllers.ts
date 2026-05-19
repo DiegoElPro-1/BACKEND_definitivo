@@ -15,6 +15,7 @@ export const controllers = {
     EstadosRecompensas: () => import('#controllers/admin/estados_recompensas_controller'),
     EstadosUsuarios: () => import('#controllers/admin/estados_usuarios_controller'),
     Materiales: () => import('#controllers/admin/materiales_controller'),
+    Puntos: () => import('#controllers/admin/puntos_controller'),
     Recompensas: () => import('#controllers/admin/recompensas_controller'),
     Roles: () => import('#controllers/admin/roles_controller'),
     TiposRecompensas: () => import('#controllers/admin/tipos_recompensas_controller'),
@@ -29,6 +30,9 @@ export const controllers = {
     Login: () => import('#controllers/auth/login_controller'),
     RecuperarPasswords: () => import('#controllers/auth/recuperar_passwords_controller'),
     Registros: () => import('#controllers/auth/registros_controller'),
+  },
+  encargado: {
+    Notificaciones: () => import('#controllers/encargado/notificaciones_controller'),
   },
   usuario: {
     Canjes: () => import('#controllers/usuario/canjes_controller'),

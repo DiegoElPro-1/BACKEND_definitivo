@@ -254,6 +254,29 @@ export class MovimientosPuntoSchema extends BaseModel {
   declare tipoMovimiento: string
 }
 
+export class NotificacioneSchema extends BaseModel {
+  static $columns = ['createdAt', 'idNotificacion', 'idReferencia', 'idUsuario', 'leida', 'mensaje', 'tipo', 'titulo', 'updatedAt'] as const
+  $columns = NotificacioneSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare idNotificacion: number
+  @column()
+  declare idReferencia: number | null
+  @column()
+  declare idUsuario: number
+  @column()
+  declare leida: boolean | null
+  @column()
+  declare mensaje: string
+  @column()
+  declare tipo: string | null
+  @column()
+  declare titulo: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+}
+
 export class PuntosReciclajeSchema extends BaseModel {
   static $columns = ['createdAt', 'direccion', 'horario', 'idAliado', 'idEstadoPunto', 'idPunto', 'latitud', 'longitud', 'nombre', 'updatedAt'] as const
   $columns = PuntosReciclajeSchema.$columns

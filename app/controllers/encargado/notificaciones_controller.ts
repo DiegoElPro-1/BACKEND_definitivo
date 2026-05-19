@@ -6,7 +6,7 @@ export default class NotificacionesController {
 async index({ auth, response }: HttpContext) {
   const usuario = auth.user!
   const notificaciones = await Notificacion.query()
-    .where('usuario_id', usuario.idUsuario)
+    .where('id_usuario', usuario.idUsuario)
     .orderBy('created_at', 'desc')
 
   const noLeidas = notificaciones.filter(n => !n.leida).length
@@ -23,7 +23,7 @@ async index({ auth, response }: HttpContext) {
     const usuario = auth.user!
     const notificacion = await Notificacion.query()
       .where('id', params.id)
-      .where('usuario_id', usuario.idUsuario)
+      .where('id_usuario', usuario.idUsuario)
       .firstOrFail()
 
     notificacion.leida = true
@@ -36,7 +36,7 @@ async index({ auth, response }: HttpContext) {
   async marcarTodasLeidas({ auth, response }: HttpContext) {
     const usuario = auth.user!
     await Notificacion.query()
-      .where('usuario_id', usuario.idUsuario)
+      .where('id_usuario', usuario.idUsuario)
       .where('leida', false)
       .update({ leida: true })
 

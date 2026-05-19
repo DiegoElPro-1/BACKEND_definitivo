@@ -403,6 +403,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/roles_controller').default['destroy']>>>
     }
   }
+  'puntos.ajustar_puntos': {
+    methods: ["POST"]
+    pattern: '/api/admin/usuarios/:idUsuario/ajustar-puntos'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { idUsuario: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/puntos_controller').default['ajustarPuntos']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/puntos_controller').default['ajustarPuntos']>>>
+    }
+  }
   'estados_materiales.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/admin/estados-materiales'
@@ -1121,6 +1133,42 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/aliado/clasificacion_controller').default['store']>>>
+    }
+  }
+  'notificaciones.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/notificaciones'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['index']>>>
+    }
+  }
+  'notificaciones.marcar_leida': {
+    methods: ["PUT"]
+    pattern: '/api/encargado/notificaciones/:id/leer'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['marcarLeida']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['marcarLeida']>>>
+    }
+  }
+  'notificaciones.marcar_todas_leidas': {
+    methods: ["PUT"]
+    pattern: '/api/encargado/notificaciones/leer-todas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['marcarTodasLeidas']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['marcarTodasLeidas']>>>
     }
   }
   'openapi.html': {

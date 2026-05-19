@@ -53,6 +53,11 @@ export interface ApiDefinition {
     update: typeof routes['roles.update']
     destroy: typeof routes['roles.destroy']
   }
+  puntos: {
+    ajustarPuntos: typeof routes['puntos.ajustar_puntos']
+    resumen: typeof routes['puntos.resumen']
+    historial: typeof routes['puntos.historial']
+  }
   estadosMateriales: {
     index: typeof routes['estados_materiales.index']
     show: typeof routes['estados_materiales.show']
@@ -119,10 +124,6 @@ export interface ApiDefinition {
     show: typeof routes['entregas.show']
     store: typeof routes['entregas.store']
   }
-  puntos: {
-    resumen: typeof routes['puntos.resumen']
-    historial: typeof routes['puntos.historial']
-  }
   canjes: {
     index: typeof routes['canjes.index']
     show: typeof routes['canjes.show']
@@ -142,6 +143,11 @@ export interface ApiDefinition {
   clasificacion: {
     index: typeof routes['clasificacion.index']
     store: typeof routes['clasificacion.store']
+  }
+  notificaciones: {
+    index: typeof routes['notificaciones.index']
+    marcarLeida: typeof routes['notificaciones.marcar_leida']
+    marcarTodasLeidas: typeof routes['notificaciones.marcar_todas_leidas']
   }
   openapi: {
     html: typeof routes['openapi.html']

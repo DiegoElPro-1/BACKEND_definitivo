@@ -13,7 +13,8 @@ export default class extends BaseSchema {
       table.boolean('leida').defaultTo(false)
       table.string('tipo', 50).nullable() 
       table.integer('id_referencia').unsigned().nullable() 
-      table.timestamps(true, true)
+      table.timestamp('created_at', { useTz: true }).notNullable()
+      table.timestamp('updated_at', { useTz: true }).notNullable()
     })
   }
 
