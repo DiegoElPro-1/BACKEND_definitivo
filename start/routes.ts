@@ -67,6 +67,9 @@ router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'sto
 router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
 router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
 
+// Puntos (ajuste)
+  router.post('/usuarios/:idUsuario/ajustar-puntos', [() => import('#controllers/admin/puntos_controller'), 'ajustarPuntos'])
+
 // Estados Materiales
   router.get('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'index'])
   router.get('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'show'])
@@ -172,6 +175,17 @@ router.group(() => {
   router.post('/clasificaciones', [() => import('#controllers/aliado/clasificacion_controller'), 'store'])
 
 }).prefix('/api/aliado').use([middleware.auth(), middleware.verificar_rol(['aliado'])])
+
+// ENCARGADO
+router.group(() => {
+
+  // Notificaciones
+  router.get('/notificaciones', [() => import('#controllers/encargado/notificaciones_controller'), 'index'])
+  router.put('/notificaciones/:id/leer', [() => import('#controllers/encargado/notificaciones_controller'), 'marcarLeida'])
+  router.put('/notificaciones/leer-todas', [() => import('#controllers/encargado/notificaciones_controller'), 'marcarTodasLeidas'])
+
+}).prefix('/api/encargado').use([middleware.auth(), middleware.verificar_rol(['encargado'])])
+
 
 // SWAGGER / OPENAPI
 import openapi from '@foadonis/openapi/services/main'
