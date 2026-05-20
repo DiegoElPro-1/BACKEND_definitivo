@@ -32,6 +32,8 @@ export const controllers = {
     Registros: () => import('#controllers/auth/registros_controller'),
   },
   encargado: {
+    Canjes: () => import('#controllers/encargado/canjes_controller'),
+    Materiales: () => import('#controllers/encargado/materiales_controller'),
     Notificaciones: () => import('#controllers/encargado/notificaciones_controller'),
   },
   usuario: {

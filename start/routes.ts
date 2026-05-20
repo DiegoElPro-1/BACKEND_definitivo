@@ -6,8 +6,8 @@ router.get('/', async () => {
     mensaje: 'Backend funcionando'
   }
 })
-// AUTH (públicas)
 
+// AUTH (públicas)
 router.group(() => {
   router.post('/iniciar-sesion', [() => import('#controllers/auth/login_controller'), 'iniciarSesion'])
   router.post('/registrarse', [() => import('#controllers/auth/registros_controller'), 'registrarse'])
@@ -17,14 +17,12 @@ router.group(() => {
 
 
 // AUTH (protegidas)
-
 router.group(() => {
   router.delete('/cerrar-sesion', [() => import('#controllers/auth/login_controller'), 'cerrarSesion'])
 }).prefix('/api/auth').use(middleware.auth())
 
 
 // ADMIN
-
 router.group(() => {
 
   // Administradores
@@ -59,24 +57,23 @@ router.group(() => {
   router.post('/recompensas', [() => import('#controllers/admin/recompensas_controller'), 'store'])
   router.put('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'update'])
   router.delete('/recompensas/:id', [() => import('#controllers/admin/recompensas_controller'), 'destroy'])
-  
-  // Roles
-router.get('/roles', [() => import('#controllers/admin/roles_controller'), 'index'])
-router.get('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'show'])
-router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'store'])
-router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
-router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
 
-// Puntos (ajuste)
+  // Roles
+  router.get('/roles', [() => import('#controllers/admin/roles_controller'), 'index'])
+  router.get('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'show'])
+  router.post('/roles', [() => import('#controllers/admin/roles_controller'), 'store'])
+  router.put('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'update'])
+  router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller'), 'destroy'])
+
+  // Puntos (ajuste)
   router.post('/usuarios/:idUsuario/ajustar-puntos', [() => import('#controllers/admin/puntos_controller'), 'ajustarPuntos'])
 
-// Estados Materiales
+  // Estados Materiales
   router.get('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'index'])
   router.get('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'show'])
   router.post('/estados-materiales', [() => import('#controllers/admin/estados_materiales_controller'), 'store'])
   router.put('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'update'])
   router.delete('/estados-materiales/:id', [() => import('#controllers/admin/estados_materiales_controller'), 'destroy'])
-
 
   // Estados Puntos
   router.get('/estados-puntos', [() => import('#controllers/admin/estados_puntos_controller'), 'index'])
@@ -120,17 +117,17 @@ router.delete('/roles/:id', [() => import('#controllers/admin/roles_controller')
   router.put('/estados-recompensas/:id', [() => import('#controllers/admin/estados_recompensas_controller'), 'update'])
   router.delete('/estados-recompensas/:id', [() => import('#controllers/admin/estados_recompensas_controller'), 'destroy'])
 
- // Tipos Recompensa
+  // Tipos Recompensa
   router.get('/tipos-recompensas', [() => import('#controllers/admin/tipos_recompensas_controller'), 'index'])
   router.get('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'show'])
   router.post('/tipos-recompensas', [() => import('#controllers/admin/tipos_recompensas_controller'), 'store'])
   router.put('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'update'])
   router.delete('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'destroy'])
+
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
 
 // USUARIO
-
 router.group(() => {
 
   // Perfil
@@ -156,7 +153,6 @@ router.group(() => {
 
 
 // ALIADO
-
 router.group(() => {
 
   // Perfil aliado
@@ -176,6 +172,7 @@ router.group(() => {
 
 }).prefix('/api/aliado').use([middleware.auth(), middleware.verificar_rol(['aliado'])])
 
+
 // ENCARGADO
 router.group(() => {
 
@@ -183,6 +180,25 @@ router.group(() => {
   router.get('/notificaciones', [() => import('#controllers/encargado/notificaciones_controller'), 'index'])
   router.put('/notificaciones/:id/leer', [() => import('#controllers/encargado/notificaciones_controller'), 'marcarLeida'])
   router.put('/notificaciones/leer-todas', [() => import('#controllers/encargado/notificaciones_controller'), 'marcarTodasLeidas'])
+
+  // Usuarios — buscador para canjes y entregas
+  router.get('/usuarios', [() => import('#controllers/encargado/canjes_controller'), 'buscarUsuarios'])
+
+  // Materiales — lista para el formulario de entrega
+  router.get('/materiales', [() => import('#controllers/encargado/materiales_controller'), 'index'])
+
+// Entregas
+router.get('/entregas', [() => import('#controllers/encargado/materiales_controller'), 'indexEntregas'])
+router.get('/entregas/:id', [() => import('#controllers/encargado/materiales_controller'), 'showEntrega'])
+router.post('/entregas', [() => import('#controllers/encargado/materiales_controller'), 'storeEntrega'])
+// ✅ Agregar esta línea:
+router.put('/entregas/:id/estado', [() => import('#controllers/encargado/materiales_controller'), 'actualizarEstadoEntrega'])
+
+  // Canjes
+  router.get('/canjes', [() => import('#controllers/encargado/canjes_controller'), 'index'])
+  router.get('/canjes/:id', [() => import('#controllers/encargado/canjes_controller'), 'show'])
+  router.post('/canjes', [() => import('#controllers/encargado/canjes_controller'), 'store'])
+  router.put('/canjes/:id/estado', [() => import('#controllers/encargado/canjes_controller'), 'actualizarEstado'])
 
 }).prefix('/api/encargado').use([middleware.auth(), middleware.verificar_rol(['encargado'])])
 

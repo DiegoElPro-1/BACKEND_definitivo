@@ -38,6 +38,10 @@ export interface ApiDefinition {
     store: typeof routes['materiales.store']
     update: typeof routes['materiales.update']
     destroy: typeof routes['materiales.destroy']
+    indexEntregas: typeof routes['materiales.index_entregas']
+    showEntrega: typeof routes['materiales.show_entrega']
+    storeEntrega: typeof routes['materiales.store_entrega']
+    actualizarEstadoEntrega: typeof routes['materiales.actualizar_estado_entrega']
   }
   recompensas: {
     index: typeof routes['recompensas.index']
@@ -128,6 +132,8 @@ export interface ApiDefinition {
     index: typeof routes['canjes.index']
     show: typeof routes['canjes.show']
     store: typeof routes['canjes.store']
+    buscarUsuarios: typeof routes['canjes.buscar_usuarios']
+    actualizarEstado: typeof routes['canjes.actualizar_estado']
   }
   perfilAliado: {
     mostrar: typeof routes['perfil_aliado.mostrar']

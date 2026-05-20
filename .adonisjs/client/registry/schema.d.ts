@@ -1171,6 +1171,126 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/notificaciones_controller').default['marcarTodasLeidas']>>>
     }
   }
+  'canjes.buscar_usuarios': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/usuarios'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['buscarUsuarios']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['buscarUsuarios']>>>
+    }
+  }
+  'materiales.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/materiales'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['index']>>>
+    }
+  }
+  'materiales.index_entregas': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['indexEntregas']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['indexEntregas']>>>
+    }
+  }
+  'materiales.show_entrega': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['showEntrega']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['showEntrega']>>>
+    }
+  }
+  'materiales.store_entrega': {
+    methods: ["POST"]
+    pattern: '/api/encargado/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['storeEntrega']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['storeEntrega']>>>
+    }
+  }
+  'materiales.actualizar_estado_entrega': {
+    methods: ["PUT"]
+    pattern: '/api/encargado/entregas/:id/estado'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['actualizarEstadoEntrega']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/materiales_controller').default['actualizarEstadoEntrega']>>>
+    }
+  }
+  'canjes.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['index']>>>
+    }
+  }
+  'canjes.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/encargado/canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['show']>>>
+    }
+  }
+  'canjes.store': {
+    methods: ["POST"]
+    pattern: '/api/encargado/canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['store']>>>
+    }
+  }
+  'canjes.actualizar_estado': {
+    methods: ["PUT"]
+    pattern: '/api/encargado/canjes/:id/estado'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['actualizarEstado']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/encargado/canjes_controller').default['actualizarEstado']>>>
+    }
+  }
   'openapi.html': {
     methods: ["GET","HEAD"]
     pattern: '/swagger'
