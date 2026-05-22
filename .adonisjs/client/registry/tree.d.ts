@@ -118,15 +118,21 @@ export interface ApiDefinition {
     update: typeof routes['tipos_recompensas.update']
     destroy: typeof routes['tipos_recompensas.destroy']
   }
+  entregas: {
+    index: typeof routes['entregas.index']
+    show: typeof routes['entregas.show']
+    actualizarEstado: typeof routes['entregas.actualizar_estado']
+    store: typeof routes['entregas.store']
+  }
+  canjesAdmin: {
+    index: typeof routes['canjes_admin.index']
+    show: typeof routes['canjes_admin.show']
+    actualizarEstado: typeof routes['canjes_admin.actualizar_estado']
+  }
   perfil: {
     mostrar: typeof routes['perfil.mostrar']
     actualizar: typeof routes['perfil.actualizar']
     cambiarPassword: typeof routes['perfil.cambiar_password']
-  }
-  entregas: {
-    index: typeof routes['entregas.index']
-    show: typeof routes['entregas.show']
-    store: typeof routes['entregas.store']
   }
   canjes: {
     index: typeof routes['canjes.index']

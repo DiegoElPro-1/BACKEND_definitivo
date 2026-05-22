@@ -450,6 +450,42 @@ const routes = {
     tokens: [{"old":"/api/admin/tipos-recompensas/:id","type":0,"val":"api","end":""},{"old":"/api/admin/tipos-recompensas/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/tipos-recompensas/:id","type":0,"val":"tipos-recompensas","end":""},{"old":"/api/admin/tipos-recompensas/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['tipos_recompensas.destroy']['types'],
   },
+  'entregas.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/entregas',
+    tokens: [{"old":"/api/admin/entregas","type":0,"val":"api","end":""},{"old":"/api/admin/entregas","type":0,"val":"admin","end":""},{"old":"/api/admin/entregas","type":0,"val":"entregas","end":""}],
+    types: placeholder as Registry['entregas.index']['types'],
+  },
+  'entregas.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/entregas/:id',
+    tokens: [{"old":"/api/admin/entregas/:id","type":0,"val":"api","end":""},{"old":"/api/admin/entregas/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/entregas/:id","type":0,"val":"entregas","end":""},{"old":"/api/admin/entregas/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['entregas.show']['types'],
+  },
+  'entregas.actualizar_estado': {
+    methods: ["PUT"],
+    pattern: '/api/admin/entregas/:id/estado',
+    tokens: [{"old":"/api/admin/entregas/:id/estado","type":0,"val":"api","end":""},{"old":"/api/admin/entregas/:id/estado","type":0,"val":"admin","end":""},{"old":"/api/admin/entregas/:id/estado","type":0,"val":"entregas","end":""},{"old":"/api/admin/entregas/:id/estado","type":1,"val":"id","end":""},{"old":"/api/admin/entregas/:id/estado","type":0,"val":"estado","end":""}],
+    types: placeholder as Registry['entregas.actualizar_estado']['types'],
+  },
+  'canjes_admin.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/canjes',
+    tokens: [{"old":"/api/admin/canjes","type":0,"val":"api","end":""},{"old":"/api/admin/canjes","type":0,"val":"admin","end":""},{"old":"/api/admin/canjes","type":0,"val":"canjes","end":""}],
+    types: placeholder as Registry['canjes_admin.index']['types'],
+  },
+  'canjes_admin.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/admin/canjes/:id',
+    tokens: [{"old":"/api/admin/canjes/:id","type":0,"val":"api","end":""},{"old":"/api/admin/canjes/:id","type":0,"val":"admin","end":""},{"old":"/api/admin/canjes/:id","type":0,"val":"canjes","end":""},{"old":"/api/admin/canjes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['canjes_admin.show']['types'],
+  },
+  'canjes_admin.actualizar_estado': {
+    methods: ["PUT"],
+    pattern: '/api/admin/canjes/:id/estado',
+    tokens: [{"old":"/api/admin/canjes/:id/estado","type":0,"val":"api","end":""},{"old":"/api/admin/canjes/:id/estado","type":0,"val":"admin","end":""},{"old":"/api/admin/canjes/:id/estado","type":0,"val":"canjes","end":""},{"old":"/api/admin/canjes/:id/estado","type":1,"val":"id","end":""},{"old":"/api/admin/canjes/:id/estado","type":0,"val":"estado","end":""}],
+    types: placeholder as Registry['canjes_admin.actualizar_estado']['types'],
+  },
   'perfil.mostrar': {
     methods: ["GET","HEAD"],
     pattern: '/api/usuario/perfil',

@@ -895,6 +895,78 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/tipos_recompensas_controller').default['destroy']>>>
     }
   }
+  'entregas.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/entregas'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['index']>>>
+    }
+  }
+  'entregas.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/entregas/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['show']>>>
+    }
+  }
+  'entregas.actualizar_estado': {
+    methods: ["PUT"]
+    pattern: '/api/admin/entregas/:id/estado'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['actualizarEstado']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/entregas_controller').default['actualizarEstado']>>>
+    }
+  }
+  'canjes_admin.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/canjes'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['index']>>>
+    }
+  }
+  'canjes_admin.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/admin/canjes/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['show']>>>
+    }
+  }
+  'canjes_admin.actualizar_estado': {
+    methods: ["PUT"]
+    pattern: '/api/admin/canjes/:id/estado'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['actualizarEstado']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/admin/canjes_admin_controller').default['actualizarEstado']>>>
+    }
+  }
   'perfil.mostrar': {
     methods: ["GET","HEAD"]
     pattern: '/api/usuario/perfil'

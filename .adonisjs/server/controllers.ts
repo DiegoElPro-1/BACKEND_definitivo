@@ -7,6 +7,8 @@ export const controllers = {
   admin: {
     Administradores: () => import('#controllers/admin/administradores_controller'),
     Aliados: () => import('#controllers/admin/aliados_controller'),
+    Encargados: () => import('#controllers/admin/encargados_controller'),
+    Entregas: () => import('#controllers/admin/entregas_controller'),
     EstadosAliados: () => import('#controllers/admin/estados_aliados_controller'),
     EstadosCanjes: () => import('#controllers/admin/estados_canjes_controller'),
     EstadosEntregas: () => import('#controllers/admin/estados_entregas_controller'),
@@ -20,6 +22,7 @@ export const controllers = {
     Roles: () => import('#controllers/admin/roles_controller'),
     TiposRecompensas: () => import('#controllers/admin/tipos_recompensas_controller'),
     Usuarios: () => import('#controllers/admin/usuarios_controller'),
+    CanjesAdmin: () => import('#controllers/admin/canjes_admin_controller'),
   },
   aliado: {
     Clasificacion: () => import('#controllers/aliado/clasificacion_controller'),

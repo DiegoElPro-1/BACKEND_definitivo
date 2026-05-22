@@ -123,7 +123,16 @@ router.group(() => {
   router.post('/tipos-recompensas', [() => import('#controllers/admin/tipos_recompensas_controller'), 'store'])
   router.put('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'update'])
   router.delete('/tipos-recompensas/:id', [() => import('#controllers/admin/tipos_recompensas_controller'), 'destroy'])
+  // Entregas admin
+  router.get('/entregas', [() => import('#controllers/admin/entregas_controller'), 'index'])
+  router.get('/entregas/:id', [() => import('#controllers/admin/entregas_controller'), 'show'])
+  router.put('/entregas/:id/estado', [() => import('#controllers/admin/entregas_controller'), 'actualizarEstado'])
+  // Canjes admin
+  router.get('/canjes', [() => import('#controllers/admin/canjes_admin_controller'), 'index'])
+  router.get('/canjes/:id', [() => import('#controllers/admin/canjes_admin_controller'), 'show'])
+  router.put('/canjes/:id/estado', [() => import('#controllers/admin/canjes_admin_controller'), 'actualizarEstado'])
 
+  
 }).prefix('/api/admin').use([middleware.auth(), middleware.verificar_rol(['admin'])])
 
 
